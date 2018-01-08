@@ -1,0 +1,112 @@
+<div class="col-md-12" ng-controller="directive">
+    <!-- general form elements -->
+    <div class="box box-primary">
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Directives Examples</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>ng-app</td>
+                        <td>
+                            Defines the entry point for angularjs based application
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ng-init</td>
+                        <td>
+                            <div ng-init="firstName='John'">
+                                <p>Name:
+                                    <input type="text" ng-model="firstName">
+                                </p>
+                                <p>You wrote: {{ firstName }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ng-repeat</td>
+                        <td>
+                            <!-- $index property of ng-repeat --> 
+                            <div ng-repeat="n in records">
+                                {{$index+1}}  {{n}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                            <td>ng-repeat</td>
+                            <td>
+                                <!-- $index property of ng-repeat --> 
+                                <div ng-repeat="n in records">
+                                    {{$index+1}}  {{n}}
+                                </div>
+                            </td>
+                        </tr>
+
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Directives Examples</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table">
+                        <tr>
+                            <th>Type</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>ng-app</td>
+                            <td>
+                                Defines the entry point for angularjs based application
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ng-init</td>
+                            <td>
+                                <div ng-init="firstName='John'">
+                                    <p>Name:
+                                        <input type="text" ng-model="firstName">
+                                    </p>
+                                    <p>You wrote: {{ firstName }}</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ng-repeat</td>
+                            <td>
+                                <!-- $index property of ng-repeat --> 
+                                <div ng-repeat="n in records">
+                                    {{$index+1}}  {{n}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                                <td>ng-repeat</td>
+                                <td>
+                                    <!-- $index property of ng-repeat --> 
+                                    <div ng-repeat="n in records">
+                                        {{$index+1}}  {{n}}
+                                    </div>
+                                </td>
+                            </tr>
+    
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        <!-- /.box -->
+
+    </div>
+
+
+</div>

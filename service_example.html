@@ -1,0 +1,17 @@
+<div class="col-md-12" ng-controller="serv_example">
+        <input type="checkbox" value="Call Service" 
+        ng-click="call_serv('monica','1')" ng-model="showdiv"/> 
+        <input type="button" value="Call Service" 
+        ng-click="call_serv('monica','1')"/> 
+        <div ng-show="showdiv">
+            Clicked On Checkbox<br>
+                <label>Name : {{name}}</label>  
+                <label>Id : {{id}}</label>   
+        </div>
+        <div ng-show="show_div1">
+                Clicked On button<br>
+                <label>Name : {{name}}</label>  
+                <label>Id : {{id}}</label>   
+        </div>
+        
+</div>

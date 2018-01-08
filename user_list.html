@@ -1,0 +1,29 @@
+<div class="box" ng-controller="user_list">
+            <div class="box-header">
+              <h3 class="box-title">User List</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table datatable="ng"  dt-options="dtOptions" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Rendering engine</th>
+                  <th>Browser</th>
+                  <th>Platform(s)</th>
+                  <th>Engine version</th>
+                  
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="list in user_list">
+                        <td>{{list.name}}</td>
+                        <td>{{list.projectname | custfilter}}</td>
+                        <td>{{list.pstart_date}}</td>
+                        <td>{{list.pend_date}}</td>
+                </tr>                
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          
