@@ -23,6 +23,27 @@ app.config(function ($routeProvider) {
         })
         .when("/filter_example", {
             templateUrl : "filter_example.html"
+        })
+        .when("/node_events", {
+            templateUrl : "nodeevents.html"
+        })
+        .when("/node_promise", {
+            templateUrl : "node_promise.html"
+        })
+        .when("/node_concept", {
+            templateUrl : "node_concept.html"
+        })
+        .when("/node_callback", {
+            templateUrl : "node_callback.html"
+        })
+        .when("/node_jwt", {
+            templateUrl : "jwt_example.html"
+        })
+        .when("/node_pipe", {
+            templateUrl : "node_pipe.html"
+        })
+        .when("/createserver", {
+            templateUrl : "createserver.html"
         });
 });
 app.controller('serv', function ($scope, $http, $rootScope, Upload, addition) {
@@ -40,6 +61,22 @@ app.service('addition', function () {
 app.controller('myfunc', function ($scope, $http, $rootScope, Upload, addition) {
     $scope.get_val = function () {
         $rootScope.$broadcast('getname', $scope.emp_name);
+    }
+    $scope.generate_taken = function ()
+    {
+        userdata = {
+            user : $scope.jwt_token
+        }
+        //alert($scope.jwt_token);
+        $http.post('http://localhost:3016/jwt/generate_token',userdata).then(function(res){
+            console.log("Go ahead");
+        })
+    }
+    $scope.verify = function()
+    {
+        $http.get('http://localhost:3016/jwt/verify_token').then(function(res){
+            console.log(res);
+        })
     }
     addition.myfunc1(16);
     $scope.click1 = function () {

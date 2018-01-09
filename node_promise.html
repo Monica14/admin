@@ -1,0 +1,63 @@
+<div class="col-md-12" ng-controller="myfunc">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Promises</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+
+        <form role="form">
+            <div class="box-body">
+                <pre>
+                        var express = require('express');
+                        var promise = require('promise');
+                        var mongojs = require('mongojs');
+                        db = mongojs('pms',[])
+                        var router = express.Router();
+                        
+                        /* GET home page. */
+                        router.get('/', function(req, res, next) {
+                            
+                            function func1() {
+                                console.log("Promise Example");
+                                return new Promise(function(resolve,reject) {
+                                    db.KRA.find({}, function(err,user) {
+                                        if (err) {
+                                            reject(err)
+                                        } else {
+                                            console.log("Function1 Called");
+                                        }
+                        
+                                    });
+                                });
+                            }
+                            function func2() {
+                                console.log("Promise Example");
+                                return new Promise(function(resolve,reject) {
+                                    db.KRA.find({_id:'1515'}, function(err,user) {
+                                        if (err) {
+                                            reject(err)
+                                        } else {
+                                            console.log("Function2 Called");
+                                        }
+                        
+                                    });
+                                });
+                            }
+                            func1().then(func2());
+                        });
+                        
+                        module.exports = router;
+                        
+                        
+                </pre>
+                    
+            </div>
+            <!-- /.box-body -->
+        </form>
+    </div>
+    <!-- /.box -->
+
+
+</div>

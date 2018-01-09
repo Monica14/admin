@@ -1,0 +1,50 @@
+<div class="col-md-12" ng-controller="myfunc">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Concept</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+
+        <form role="form">
+            <!-- <div class="box-header with-border">
+                <h3 class="box-title">What is nodejs</h3>
+            </div> -->
+            <div class="box-body">
+                <p>
+                    Piping is a mechanism where we provide the output of one stream as the input to another stream. It is normally used to get
+                    data from one stream and to pass the output of that stream to another stream. There is no limit on piping
+                    operations. Now we'll show a piping example for reading from one file and writing it to another file.
+                </p>
+               
+            </div>
+            <div class="box-header with-border">
+                <h3 class="box-title">Example</h3>
+            </div>
+            <div class="box-body">
+                <label>Read Write Example</label>
+                <pre>
+                        var express = require('express');
+                        var router = express.Router();
+                        var fs = require('fs');
+                        
+                        /* GET home page. */
+                        router.get('/', function(req, res, next) {
+                          var readstream = fs.createReadStream('input.txt');
+                          var writestream = fs.createWriteStream('output.txt');
+                          readstream.pipe(writestream);
+                        });
+                        
+                        module.exports = router;
+                        
+                </pre>
+
+            </div>
+            <!-- /.box-body -->
+        </form>
+    </div>
+    <!-- /.box -->
+
+
+</div>
