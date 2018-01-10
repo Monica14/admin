@@ -2,45 +2,137 @@
     <!-- general form elements -->
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Events</h3>
+            <h3 class="box-title">JSON Web Token (JWT) Concept</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
 
         <form role="form">
+            <!-- <div class="box-header with-border">
+                <h3 class="box-title">What is nodejs</h3>
+            </div> -->
+            <div class="box-body">
+                <p>
+                    JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting
+                    information between parties as a JSON object. This information can be verified and trusted because it
+                    is digitally signed.
+                </p>
+                <p>
+                    <b>When should you use JSON Web Tokens?</b>
+                    <p>
+                        Here are some scenarios where JSON Web Tokens are useful:
+                        <br>
+                        <ul>
+                            <li>
+                                <b>Authentication :</b>
+                                This is the most common scenario for using JWT. Once the user is logged in, each subsequent request will include the JWT,
+                                allowing the user to access routes, services, and resources that are permitted with that
+                                token. Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead
+                                and its ability to be easily used across different domains.
+                            </li>
+                            <li>
+                                <b>Information Exchange :</b>
+                                JSON Web Tokens are a good way of securely transmitting information between parties. Because JWTs can be signed—for example,
+                                using public/private key pairs—you can be sure the senders are who they say they are. Additionally,
+                                as the signature is calculated using the header and the payload, you can also verify that
+                                the content hasn't been tampered with.
+                            </li>
+                        </ul>
+                    </p>
+                </p>
+                <p>
+                    <b>What is the JSON Web Token structure?</b>
+                    <p>
+                        JSON Web Tokens consist of three parts separated by dots (.), which are:
+                        <br>
+                        <ul>
+                            <li>Header</li>
+                            <li>Payload</li>
+                            <li>Signature</li>
+                        </ul>
+                        Therefore, a JWT typically looks like the following.
+                        <br> xxxxx.yyyyy.zzzzz
+                    </p>
+                </p>
+            </div>
+            <div class="box-header with-border">
+                <h3 class="box-title">Example</h3>
+            </div>
             <div class="box-body">
                 <input type="text" ng-model="jwt_token">
                 <input type="button" value="Generate Token" ng-click="generate_taken()">
                 <input type="button" value="Verify Token" ng-click="verify()">
+                <br>
+                <label>Angularjs Side</label>
+                <pre>
+                        var app = angular.module('pms', ["ngStorage"]);
+                        app.controller('myfunc', function ($scope, $http,$localStorage) {
+
+                            $scope.generate_taken = function ()
+                            {
+                                userdata = {
+                                    user : $scope.jwt_token
+                                }
+                                $http.post('http://localhost:3016/jwt/generate_token',userdata).then(function(res){
+                                    if(res.data != 'unauthorized')
+                                    {
+                                        $localStorage.token = res.data
+                                    }
+                                    else{
+                                        alert("Not Authorized")
+                                    }            
+                                })
+                            }
+                            $scope.verify = function()
+                            {
+                                userdata = {
+                                    user : $localStorage.token
+                                }
+                                $http.post('http://localhost:3016/jwt/verify_token',userdata).then(function(res){
+                                    alert(res.data);
+                                })
+                            }                            
+                        });                   
+                </pre>
+                <label>Nodejs Side</label>
                 <pre>
                         var express = require('express');
-                        var events = require('events');
-                        var event_emitter = new events.EventEmitter();
+                        var jwt = require('jsonwebtoken');
                         var router = express.Router();
+                        var mongojs = require('mongojs');
+                        var db = mongojs('pms',[]);
                         
                         /* GET home page. */
-                        router.get('/', function(req, res, next) {
-                            
-                            var multiple = function()
-                            {
-                                console.log("Event Called");
-                                event_emitter.emit('calculate');
-                            }
-                            var calculate1 = function calculate(a)
-                            {
-                                console.log(a*a);
-                            }
-                            event_emitter.on('entry',multiple);
-                            event_emitter.on('calculate',function(){
-                                calculate1(2);
-                            });
-                            event_emitter.emit('entry');
+                        router.post('/generate_token', function(req, res, next) {
+                            db.User.find({username: req.body.user},function(err,rslt){
+                                if(rslt.length > 0)
+                                {
+                                    var token = jwt.sign({ username: req.body.user }, 'shhhhh');
+                                    req.session.token = token;
+                                    res.locals.token = req.session.token;
+                                    //res.cookie('token',req.session.token,{expire : new Date() + (24*60*60),maxAge:86400});
+                                    res.send(req.session.token)        
+                                }
+                                else{
+                                    res.send("unauthorized")
+                                }
+                            })
                         });
                         
-                        module.exports = router;
+                        router.post('/verify_token', function(req, res, next) {  
                         
+                            try
+                            {
+                                var decoded = jwt.verify(req.body.user, 'shhhhh');
+                                res.send("Verified")
+                            }
+                            catch(err)
+                            {
+                                res.send(err['message'])
+                            }
+                        });
+                        module.exports = router;                        
                 </pre>
-                    
             </div>
             <!-- /.box-body -->
         </form>

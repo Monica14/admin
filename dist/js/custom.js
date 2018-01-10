@@ -1,5 +1,12 @@
-var app = angular.module('pms', ["ngRoute", "datatables", "ngFileUpload"]);
-
+var app = angular.module('pms', ["ngRoute", "datatables", "ngFileUpload","ngStorage"]);
+app.run(function($interval,$window){
+    $interval( function(){
+        console.log("storage");
+        $window.localStorage.clear();
+        console.log("clear");
+      // delete all the required localStorage variables by specifying their keys
+    }, 1000*60*1);
+  });
 ///////////////////// Routing ////////////////////////////
 app.config(function ($routeProvider) {
     $routeProvider
@@ -58,7 +65,7 @@ app.service('addition', function () {
         console.log(x);
     }
 });
-app.controller('myfunc', function ($scope, $http, $rootScope, Upload, addition) {
+app.controller('myfunc', function ($scope, $http, $rootScope,$localStorage, Upload, addition) {
     $scope.get_val = function () {
         $rootScope.$broadcast('getname', $scope.emp_name);
     }
@@ -67,15 +74,23 @@ app.controller('myfunc', function ($scope, $http, $rootScope, Upload, addition) 
         userdata = {
             user : $scope.jwt_token
         }
-        //alert($scope.jwt_token);
         $http.post('http://localhost:3016/jwt/generate_token',userdata).then(function(res){
-            console.log("Go ahead");
+            if(res.data != 'unauthorized')
+            {
+                $localStorage.token = res.data
+            }
+            else{
+                alert("Not Authorized")
+            }            
         })
     }
     $scope.verify = function()
     {
-        $http.get('http://localhost:3016/jwt/verify_token').then(function(res){
-            console.log(res);
+        userdata = {
+            user : $localStorage.token
+        }
+        $http.post('http://localhost:3016/jwt/verify_token',userdata).then(function(res){
+            alert(res.data);
         })
     }
     addition.myfunc1(16);
