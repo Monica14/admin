@@ -1,0 +1,60 @@
+<div class="col-md-12" ng-controller="myfunc">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">setInterval vs setTimeout</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+
+        <form role="form">
+            <div class="box-body">
+                <script>
+                    //setTimeout(alert("SetTimeout Executed"),1000); 
+                    // for(var i=0;i<5;i++)
+                    // {
+                    //     setTimeout(function() { console.log(i) },1000);      
+                    //     console.log(i)                   
+                    // }
+                    function id(i) { 
+                        // ()=>{ console.log("i") } 
+                        console.log(i)   
+                        setInterval(id,1000)
+                    }
+                    for(var i=0;i<5;i++)
+                    {                       
+                        id(i);    
+                        // console.log(a)   
+                        if(i==4)
+                        {
+                            clearInterval(id);
+                            console.log("clearrrrr")
+                        }                
+                    }
+                    //setInterval(console.log("setInterval Executed"),1000);    
+                </script>
+                <label>Example Of setTimeout</label>
+                <pre>                    
+                    for(var i=0;i<5;i++)
+                    {
+                        setTimeout(()=>{ console.log(i) } ,1000);      
+                        console.log("Hello")                   
+                    }                        
+                </pre>
+                <label>Example Of setTimeout</label>
+                <pre>                    
+                    for(var i=0;i<5;i++)
+                    {
+                        setInterval(()=>{ console.log(i) } ,1000);      
+                        console.log("Hello")                   
+                    }                        
+                </pre>
+                <label>Please check console to see the output</label> 
+            </div>
+            <!-- /.box-body -->
+        </form>
+    </div>
+    <!-- /.box -->
+
+
+</div>

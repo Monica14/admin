@@ -31,6 +31,9 @@ app.config(function ($routeProvider) {
         .when("/filter_example", {
             templateUrl : "filter_example.html"
         })
+        .when("/angularjs_referencelinks", {
+            templateUrl : "angularjs_referencelinks.html"
+        })
         .when("/node_events", {
             templateUrl : "nodeevents.html"
         })
@@ -48,9 +51,21 @@ app.config(function ($routeProvider) {
         })
         .when("/node_pipe", {
             templateUrl : "node_pipe.html"
-        })
+        })        
         .when("/createserver", {
             templateUrl : "createserver.html"
+        })
+        .when("/node_interviewquestions", {
+            templateUrl : "node_interviewquestions.html"
+        })
+        .when("/general", {
+            templateUrl : "general_query.html"
+        })
+        .when("/setinterval_vs_settimeout", {
+            templateUrl : "setinterval_vs_settimout.html"
+        })
+        .when("/javascript_interviewquestions", {
+            templateUrl : "javascript_interviewquestions.html"
         });
 });
 app.controller('serv', function ($scope, $http, $rootScope, Upload, addition) {
