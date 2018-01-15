@@ -1,0 +1,91 @@
+<div class="col-md-12" ng-controller="directive">
+    <!-- general form elements -->
+    <div class="box box-primary">
+
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Angularjs Routing</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table">
+                    <tr>
+                        <th>$routeProvider</th>
+                        <th>$stateProvide</th>
+                    </tr>
+                    <tr>
+                        <td>URLs to controllers and views (HTML partials). It watches $location.url() and tries to map the path
+                            to an existing route definition.</td>
+                        <td>
+                            AngularUI Router is a routing framework for AngularJS, which allows you to organize the parts of your interface into a state
+                            machine. UI-Router is organized around states, which may optionally have routes, as well as other
+                            behavior, attached.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="default prettyprint prettyprinted" style=""><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">ng-view</span><span class="tag">&gt;&lt;/div&gt;</span></pre>
+
+                        </td>
+                        <td>
+                            <pre class="default prettyprint prettyprinted" style=""><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">ui-view</span><span class="tag">&gt;</span>
+                                <span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">ui-view</span><span class="pun">=</span><span class="atv">'header'</span><span class="tag">&gt;&lt;/div&gt;</span><span class="pln">
+                                    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">ui-view</span><span class="pun">=</span><span class="atv">'content'</span><span class="tag">&gt;&lt;/div&gt;</span><span class="pln">
+                                    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">ui-view</span><span class="pun">=</span><span class="atv">'footer'</span><span class="tag">&gt;&lt;/div&gt;</span><span class="pln">
+                                </span><span class="tag">&lt;/div&gt;</span></code></pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Limitations :
+                            <ul>
+                                <li>
+                                    The page can only contain single ng-view on page
+                                </li>
+                                <li>
+                                    If your SPA has multiple small components on the page that you wanted to render based on some conditions, $routeProvider
+                                    fails. (to achieve that, we need to use directives like ng-include, ng-switch, ng-if,
+                                    ng-show, which looks bad to have them in SPA)
+                                </li>
+                                <li>
+                                    You can not relate between two routes like parent and child relationship.
+                                </li>
+                                <li>
+                                    You cannot show and hide a part of the view based on url pattern.
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+
+                            <ul>
+                                <li>You can have multiple
+                                    <code>ui-view</code> on single page</li>
+                                <li>Various views can be nested in each other and maintained by defining state in routing phase.</li>
+                                <li>We can have child &amp; parent relationship here, simply like inheritance in state, also
+                                    you could define sibling states.</li>
+                                <li>You could change the
+                                    <code>ui-view="some"</code> of state just by using absolute routing using
+                                    <code>@</code> with state name.</li>
+                                <li>Another way you could do relative routing is by using only
+                                    <code>@</code> to change
+                                    <code>ui-view="some"</code>. This will replace the
+                                    <code>ui-view</code> rather than checking if it is nested or not.</li>
+                                <li>Here you could use
+                                    <code>ui-sref</code> to create a
+                                    <code>href</code> URL dynamically on the basis of
+                                    <code>URL</code> mentioned in a state, also you could give a state params in the json format.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        <!-- /.box -->
+
+    </div>
+
+
+</div>

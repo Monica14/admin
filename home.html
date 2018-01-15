@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <script src="./bower_components/jquery/dist/jquery.min.js"></script>
   <script src="./dist/js/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
   <script src="./dist/js/custom.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.2/angular-datatables.min.js"></script>
@@ -118,7 +119,7 @@
           <li class="header">MAIN NAVIGATION</li>
 
           <li>
-            <a href="#!admin_dashboard">
+            <a href="admin_dashboard">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
               <span class="pull-right-container">
@@ -127,7 +128,7 @@
             </a>
           </li>
           <li>
-            <a href="#!add_menu">
+            <a href="add_menu">
               <i class="fa fa-th"></i>
               <span>Add Menu</span>
               <span class="pull-right-container">
@@ -146,13 +147,21 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="#!setinterval_vs_settimeout">
+                <a ui-sref="javascript_general">
+                  <i class="fa fa-circle-o"></i>Methods</a>
+              </li>
+              <li>
+                <a ui-sref="setinterval_vs_settimeout">
                   <i class="fa fa-circle-o"></i> setInterval Vs setTimeout</a>
               </li>
               <li>
-                  <a href="#!javascript_interviewquestions">
-                    <i class="fa fa-circle-o"></i>Interview Preparation</a>
-                </li>
+                <a ui-sref="javascript_interviewquestions">
+                  <i class="fa fa-circle-o"></i>Interview Preparation</a>
+              </li>
+              <li>
+                <a ui-sref="scope_var">
+                  <i class="fa fa-circle-o"></i>variable scope</a>
+              </li>
             </ul>
           </li>
 
@@ -166,23 +175,27 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="#!broadcast">
+                <a ui-sref="routing">
+                  <i class="fa fa-circle-o"></i> Routing </a>
+              </li>
+              <li>
+                <a ui-sref="broadcast">
                   <i class="fa fa-circle-o"></i> Broadcast</a>
               </li>
               <li>
-                <a href="#!service_example">
+                <a ui-sref="service_example">
                   <i class="fa fa-circle-o"></i> Services</a>
               </li>
               <li>
-                <a href="#!directives">
+                <a ui-sref="directives">
                   <i class="fa fa-circle-o"></i> Directives</a>
               </li>
               <li>
-                <a href="#!filter_example">
+                <a ui-sref="filter_example">
                   <i class="fa fa-circle-o"></i> Filters</a>
               </li>
               <li>
-                <a href="#!angularjs_referencelinks">
+                <a ui-sref="angularjs_referencelinks">
                   <i class="fa fa-circle-o"></i> Reference Links</a>
               </li>
             </ul>
@@ -198,45 +211,65 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="#!node_concept">
+                <a ui-sref="node_concept">
                   <i class="fa fa-circle-o"></i> Concepts</a>
               </li>
               <li>
-                <a href="#!createserver">
+                <a ui-sref="createserver">
                   <i class="fa fa-circle-o"></i> Create Server</a>
               </li>
               <li>
-                <a href="#!node_callback">
+                <a ui-sref="node_callback">
                   <i class="fa fa-circle-o"></i> Callback</a>
               </li>
               <li>
-                <a href="#!node_events">
+                <a ui-sref="node_events">
                   <i class="fa fa-circle-o"></i> Events</a>
               </li>
               <li>
-                <a href="#!node_promise">
+                <a ui-sref="node_promise">
                   <i class="fa fa-circle-o"></i> Promise</a>
               </li>
               <li>
-                <a href="#!node_pipe">
+                <a ui-sref="node_pipe">
                   <i class="fa fa-circle-o"></i> Pipe</a>
               </li>
               <li>
-                <a href="#!node_jwt">
+                <a ui-sref="streams">
+                  <i class="fa fa-circle-o"></i> Streams</a>
+              </li>
+              <li>
+                <a ui-sref="node_jwt">
                   <i class="fa fa-circle-o"></i>JWT (JSON Web Token) </a>
               </li>
               <li>
-                  <a href="#!node_interviewquestions">
-                    <i class="fa fa-circle-o"></i>Interview Preparation </a>
-                </li>
+                <a ui-sref="node_interviewquestions">
+                  <i class="fa fa-circle-o"></i>Interview Preparation </a>
+              </li>
             </ul>
           </li>
 
           <li>
-            <a href="#!general">
+            <a ui-sref="general">
               <i class="fa fa-th"></i>
-              <span>General</span>              
+              <span>General</span>
             </a>
+          </li>
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-pie-chart"></i>
+              <span>MongoDB</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a ui-sref="mongodb_database_study">
+                  <i class="fa fa-circle-o"></i>Study Links</a>
+              </li>
+            </ul>
           </li>
 
           <li>
@@ -261,11 +294,11 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="#!add_menu">
+                <a ui-sref="add_menu">
                   <i class="fa fa-circle-o"></i> Add User</a>
               </li>
               <li>
-                <a href="#!search_user">
+                <a ui-sref="search_user">
                   <i class="fa fa-circle-o"></i> Search User</a>
               </li>
             </ul>
@@ -300,7 +333,7 @@
                 <input  ng-model="emp_name">
             </div> -->
 
-        <div class="row" ng-view>
+        <div class="row" ui-view>
 
         </div>
 

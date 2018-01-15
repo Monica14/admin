@@ -1,0 +1,87 @@
+<div class="col-md-12" ng-controller="myfunc">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Variable Scope</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+
+        <form role="form">
+            <div class="box-body">
+                <div class="box-header with-border">
+                    <h3 class="box-title">var</h3>
+                </div>
+                <pre>
+                                for (var i = 0; i < 4; i++) {
+                                    console.log(i)
+                                }
+                                //console.log(i)
+                                
+                                /////////// let allows to change the variable value also can reinitialized it /////////////////
+                        </pre>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Let</h3>
+                </div>
+                <pre>
+                        let a = 11;
+                        function check() {
+                            for (let i = 0; i < 4; i++) {
+                                console.log(i)
+                            }
+                            a = 9;                           
+                        }
+                        check();
+                        console.log(a)
+
+                        /////////// let allows to change the variable value but cannot reinitialized it /////////////////
+                </pre>
+                <div class="box-header with-border">
+                    <h3 class="box-title">const</h3>
+                </div>
+                <pre>
+                        const i = 22;
+                            for (var i = 0; i < 4; i++) {
+                                console.log(i)
+                            }
+                            console.log(i)
+
+
+                            /////////// while initialization of variable you have to assign the value to it else it throughs error /////////////////
+                            /////////// const does not allows to change the variable value as well as cannot reinitialized it /////////////////
+                    </pre>
+                <p>
+                    <script>
+                        // var i
+                        // i = 34
+                        ///////////// without function //////////////////
+                        for (var i = 0; i < 4; i++) {
+                            // console.log(i)
+                        }
+                        //console.log(i)
+                        ///////////// without function //////////////////
+                        let a = 11;
+                        function check() {
+                            for (let i = 0; i < 4; i++) {
+                                console.log(i)
+                            }
+                            a = 9;
+                            // for (var i = 0; i < 4; i++) {
+                            //     console.log(i)
+                            // }
+                        }
+                        check();
+                        console.log(a)
+                    </script>
+                </p>
+            </div>
+
+            <!-- /.box-body -->
+
+
+        </form>
+    </div>
+    <!-- /.box -->
+
+
+</div>

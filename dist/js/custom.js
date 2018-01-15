@@ -1,4 +1,4 @@
-var app = angular.module('pms', ["ngRoute", "datatables", "ngFileUpload","ngStorage"]);
+var app = angular.module('pms', ["ngRoute", "datatables", "ngFileUpload","ngStorage","ui.router"]);
 app.run(function($interval,$window){
     $interval( function(){
         console.log("storage");
@@ -8,66 +8,151 @@ app.run(function($interval,$window){
     }, 1000*60*1);
   });
 ///////////////////// Routing ////////////////////////////
-app.config(function ($routeProvider) {
-    $routeProvider
-        .when("/add_menu", {
-            templateUrl: "./form.html"
-        })
-        .when("/admin_dashboard", {
-            templateUrl: "./admin_dashboard.html"
-        })
-        .when("/search_user", {
-            templateUrl: "./user_list.html"
-        })
-        .when("/broadcast", {
-            templateUrl : "broadcast.html"
-        })
-        .when("/service_example", {
-            templateUrl : "service_example.html"
-        })
-        .when("/directives", {
-            templateUrl : "directives.html"
-        })
-        .when("/filter_example", {
-            templateUrl : "filter_example.html"
-        })
-        .when("/angularjs_referencelinks", {
-            templateUrl : "angularjs_referencelinks.html"
-        })
-        .when("/node_events", {
-            templateUrl : "nodeevents.html"
-        })
-        .when("/node_promise", {
-            templateUrl : "node_promise.html"
-        })
-        .when("/node_concept", {
-            templateUrl : "node_concept.html"
-        })
-        .when("/node_callback", {
-            templateUrl : "node_callback.html"
-        })
-        .when("/node_jwt", {
-            templateUrl : "jwt_example.html"
-        })
-        .when("/node_pipe", {
-            templateUrl : "node_pipe.html"
-        })        
-        .when("/createserver", {
-            templateUrl : "createserver.html"
-        })
-        .when("/node_interviewquestions", {
-            templateUrl : "node_interviewquestions.html"
-        })
-        .when("/general", {
-            templateUrl : "general_query.html"
-        })
-        .when("/setinterval_vs_settimeout", {
-            templateUrl : "setinterval_vs_settimout.html"
-        })
-        .when("/javascript_interviewquestions", {
-            templateUrl : "javascript_interviewquestions.html"
-        });
+// app.config(function ($routeProvider) {
+//     $routeProvider
+//         .when("/add_menu", {
+//             templateUrl: "./form.html"
+//         })
+//         .when("/admin_dashboard", {
+//             templateUrl: "./admin_dashboard.html"
+//         })
+//         .when("/search_user", {
+//             templateUrl: "./user_list.html"
+//         })
+//         .when("/broadcast", {
+//             templateUrl : "broadcast.html"
+//         })
+//         .when("/service_example", {
+//             templateUrl : "service_example.html"
+//         })
+//         // .when("/directives", {
+//         //     templateUrl : "directives.html"
+//         // })
+//         .when("/filter_example", {
+//             templateUrl : "filter_example.html"
+//         })
+//         .when("/angularjs_referencelinks", {
+//             templateUrl : "angularjs_referencelinks.html"
+//         })
+//         .when("/node_events", {
+//             templateUrl : "nodeevents.html"
+//         })
+//         .when("/node_promise", {
+//             templateUrl : "node_promise.html"
+//         })
+//         .when("/node_concept", {
+//             templateUrl : "node_concept.html"
+//         })
+//         .when("/node_callback", {
+//             templateUrl : "node_callback.html"
+//         })
+//         .when("/node_jwt", {
+//             templateUrl : "jwt_example.html"
+//         })
+//         .when("/node_pipe", {
+//             templateUrl : "node_pipe.html"
+//         })        
+//         .when("/createserver", {
+//             templateUrl : "createserver.html"
+//         })
+//         .when("/node_interviewquestions", {
+//             templateUrl : "node_interviewquestions.html"
+//         })
+//         .when("/general", {
+//             templateUrl : "general_query.html"
+//         })
+//         .when("/setinterval_vs_settimeout", {
+//             templateUrl : "setinterval_vs_settimout.html"
+//         })
+//         .when("/javascript_interviewquestions", {
+//             templateUrl : "javascript_interviewquestions.html"
+//         })
+//         .when("/javascript_general", {
+//             templateUrl : "javascript_methods.html"
+//         })
+//         .when("/scope_var", {
+//             templateUrl : "scope_var.html"
+//         })
+//         .when("/mongodb_database_study", {
+//             templateUrl : "mongodb_database_study.html"
+//         })
+//         .when("/streams", {
+//             templateUrl : "streams.html"
+//         });
+// });
+
+app.config(function($stateProvider){
+    $stateProvider.state('directives',{
+        templateUrl : "directives.html"
+    })    
+    .state("routing", {
+        templateUrl: "routing.html"
+    })
+    .state("admin_dashboard", {
+        templateUrl: "admin_dashboard.html"
+    })
+    .state("search_user", {
+        templateUrl: "user_list.html"
+    })
+    .state("broadcast", {
+        templateUrl : "broadcast.html"
+    })
+    .state("service_example", {
+        templateUrl : "service_example.html"
+    })
+    .state("filter_example", {
+        templateUrl : "filter_example.html"
+    })
+    .state("angularjs_referencelinks", {
+        templateUrl : "angularjs_referencelinks.html"
+    })
+    .state("node_events", {
+        templateUrl : "nodeevents.html"
+    })
+    .state("node_promise", {
+        templateUrl : "node_promise.html"
+    })
+    .state("node_concept", {
+        templateUrl : "node_concept.html"
+    })
+    .state("node_callback", {
+        templateUrl : "node_callback.html"
+    })
+    .state("node_jwt", {
+        templateUrl : "jwt_example.html"
+    })
+    .state("node_pipe", {
+        templateUrl : "node_pipe.html"
+    })        
+    .state("createserver", {
+        templateUrl : "createserver.html"
+    })
+    .state("node_interviewquestions", {
+        templateUrl : "node_interviewquestions.html"
+    })
+    .state("general", {
+        templateUrl : "general_query.html"
+    })
+    .state("setinterval_vs_settimeout", {
+        templateUrl : "setinterval_vs_settimout.html"
+    })
+    .state("javascript_interviewquestions", {
+        templateUrl : "javascript_interviewquestions.html"
+    })
+    .state("javascript_general", {
+        templateUrl : "javascript_methods.html"
+    })
+    .state("scope_var", {
+        templateUrl : "scope_var.html"
+    })
+    .state("mongodb_database_study", {
+        templateUrl : "mongodb_database_study.html"
+    })
+    .state("streams", {
+        templateUrl : "streams.html"
+    });
 });
+
 app.controller('serv', function ($scope, $http, $rootScope, Upload, addition) {
     $scope.$on('getname', function (events, args) {
         console.log(events);
@@ -75,6 +160,11 @@ app.controller('serv', function ($scope, $http, $rootScope, Upload, addition) {
         $scope.emp_name = args;
     })
 });
+app.directive('custdirective',function(){
+    return {
+        template : "<b>Hello............</b>"
+    }
+})
 app.service('addition', function () {
     this.myfunc1 = function (x) {
         console.log(x);
