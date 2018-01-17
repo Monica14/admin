@@ -13,5 +13,21 @@
                 <label>Name : {{name}}</label>  
                 <label>Id : {{id}}</label>   
         </div>
+        <pre>
+                        app.service('getdata', function ($rootScope) {
+                                this.cust_func = function (name, id) {
+                                    $rootScope.$broadcast('pname', { a: name, b: id })
+                                };
+                                var setname;
+                                this.setMSG = function(msg)
+                                {
+                                    setname = msg;
+                                }
+                                this.getMSG = function()
+                                {
+                                    alert(setname);
+                                }
+                            })
+        </pre>
         
 </div>

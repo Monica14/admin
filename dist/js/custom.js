@@ -1,12 +1,12 @@
-var app = angular.module('pms', ["ngRoute", "datatables", "ngFileUpload","ngStorage","ui.router"]);
-app.run(function($interval,$window){
-    $interval( function(){
+var app = angular.module('pms', ["ngRoute", "datatables", "ngFileUpload", "ngStorage", "ui.router"]);
+app.run(function ($interval, $window) {
+    $interval(function () {
         console.log("storage");
         $window.localStorage.clear();
         console.log("clear");
-      // delete all the required localStorage variables by specifying their keys
-    }, 1000*60*1);
-  });
+        // delete all the required localStorage variables by specifying their keys
+    }, 1000 * 60 * 1);
+});
 ///////////////////// Routing ////////////////////////////
 // app.config(function ($routeProvider) {
 //     $routeProvider
@@ -81,76 +81,91 @@ app.run(function($interval,$window){
 //         });
 // });
 
-app.config(function($stateProvider){
-    $stateProvider.state('directives',{
-        templateUrl : "directives.html"
-    })    
-    .state("routing", {
-        templateUrl: "routing.html"
+app.config(function ($stateProvider) {
+    $stateProvider.state('directives', {
+        templateUrl: "directives.html"
     })
-    .state("admin_dashboard", {
-        templateUrl: "admin_dashboard.html"
-    })
-    .state("search_user", {
-        templateUrl: "user_list.html"
-    })
-    .state("broadcast", {
-        templateUrl : "broadcast.html"
-    })
-    .state("service_example", {
-        templateUrl : "service_example.html"
-    })
-    .state("filter_example", {
-        templateUrl : "filter_example.html"
-    })
-    .state("angularjs_referencelinks", {
-        templateUrl : "angularjs_referencelinks.html"
-    })
-    .state("node_events", {
-        templateUrl : "nodeevents.html"
-    })
-    .state("node_promise", {
-        templateUrl : "node_promise.html"
-    })
-    .state("node_concept", {
-        templateUrl : "node_concept.html"
-    })
-    .state("node_callback", {
-        templateUrl : "node_callback.html"
-    })
-    .state("node_jwt", {
-        templateUrl : "jwt_example.html"
-    })
-    .state("node_pipe", {
-        templateUrl : "node_pipe.html"
-    })        
-    .state("createserver", {
-        templateUrl : "createserver.html"
-    })
-    .state("node_interviewquestions", {
-        templateUrl : "node_interviewquestions.html"
-    })
-    .state("general", {
-        templateUrl : "general_query.html"
-    })
-    .state("setinterval_vs_settimeout", {
-        templateUrl : "setinterval_vs_settimout.html"
-    })
-    .state("javascript_interviewquestions", {
-        templateUrl : "javascript_interviewquestions.html"
-    })
-    .state("javascript_general", {
-        templateUrl : "javascript_methods.html"
-    })
-    .state("scope_var", {
-        templateUrl : "scope_var.html"
-    })
-    .state("mongodb_database_study", {
-        templateUrl : "mongodb_database_study.html"
-    })
-    .state("streams", {
-        templateUrl : "streams.html"
-    });
+        .state("routing", {
+            templateUrl: "routing.html"
+        })
+        .state("admin_dashboard", {
+            templateUrl: "admin_dashboard.html"
+        })
+        .state("search_user", {
+            templateUrl: "user_list.html"
+        })
+        .state("broadcast", {
+            templateUrl: "broadcast.html"
+        })
+        .state("service_example", {
+            templateUrl: "service_example.html"
+        })
+        .state("filter_example", {
+            templateUrl: "filter_example.html"
+        })
+        .state("angularjs_referencelinks", {
+            templateUrl: "angularjs_referencelinks.html"
+        })
+        .state("node_events", {
+            templateUrl: "nodeevents.html"
+        })
+        .state("node_promise", {
+            templateUrl: "node_promise.html"
+        })
+        .state("node_concept", {
+            templateUrl: "node_concept.html"
+        })
+        .state("node_callback", {
+            templateUrl: "node_callback.html"
+        })
+        .state("node_jwt", {
+            templateUrl: "jwt_example.html"
+        })
+        .state("node_pipe", {
+            templateUrl: "node_pipe.html"
+        })
+        .state("createserver", {
+            templateUrl: "createserver.html"
+        })
+        .state("node_interviewquestions", {
+            templateUrl: "node_interviewquestions.html"
+        })
+        .state("general", {
+            templateUrl: "general_query.html"
+        })
+        .state("setinterval_vs_settimeout", {
+            templateUrl: "setinterval_vs_settimout.html"
+        })
+        .state("javascript_interviewquestions", {
+            templateUrl: "javascript_interviewquestions.html"
+        })
+        .state("javascript_general", {
+            templateUrl: "javascript_methods.html"
+        })
+        .state("scope_var", {
+            templateUrl: "scope_var.html"
+        })
+        .state("mongodb_database_study", {
+            templateUrl: "mongodb_database_study.html"
+        })
+        .state("streams", {
+            templateUrl: "streams.html"
+        })
+        .state("factory_example", {
+            templateUrl: "factory_example.html"
+        })
+        .state("javascript_prototype", {
+            templateUrl: "javascript_prototype.html"
+        })
+        .state("oops_concept", {
+            templateUrl: "oops_concept.html"
+        })
+        .state("access_specifier", {
+            templateUrl: "access_specifier.html"
+        })
+        .state("demo", {
+            templateUrl: "demo.html"
+        });
 });
 
 app.controller('serv', function ($scope, $http, $rootScope, Upload, addition) {
@@ -160,9 +175,9 @@ app.controller('serv', function ($scope, $http, $rootScope, Upload, addition) {
         $scope.emp_name = args;
     })
 });
-app.directive('custdirective',function(){
+app.directive('custdirective', function () {
     return {
-        template : "<b>Hello............</b>"
+        template: "<b>Hello............</b>"
     }
 })
 app.service('addition', function () {
@@ -170,31 +185,28 @@ app.service('addition', function () {
         console.log(x);
     }
 });
-app.controller('myfunc', function ($scope, $http, $rootScope,$localStorage, Upload, addition) {
+app.controller('myfunc', function ($scope, $http, $rootScope, $localStorage, Upload, addition) {
     $scope.get_val = function () {
         $rootScope.$broadcast('getname', $scope.emp_name);
     }
-    $scope.generate_taken = function ()
-    {
+    $scope.generate_taken = function () {
         userdata = {
-            user : $scope.jwt_token
+            user: $scope.jwt_token
         }
-        $http.post('http://localhost:3016/jwt/generate_token',userdata).then(function(res){
-            if(res.data != 'unauthorized')
-            {
+        $http.post('http://localhost:3016/jwt/generate_token', userdata).then(function (res) {
+            if (res.data != 'unauthorized') {
                 $localStorage.token = res.data
             }
-            else{
+            else {
                 alert("Not Authorized")
-            }            
+            }
         })
     }
-    $scope.verify = function()
-    {
+    $scope.verify = function () {
         userdata = {
-            user : $localStorage.token
+            user: $localStorage.token
         }
-        $http.post('http://localhost:3016/jwt/verify_token',userdata).then(function(res){
+        $http.post('http://localhost:3016/jwt/verify_token', userdata).then(function (res) {
             alert(res.data);
         })
     }
@@ -290,20 +302,53 @@ app.controller("MyController3", function ($scope, $rootScope) {
 });
 
 ////////////////////////// service example ////////////////////////
-app.service('getdata',function($rootScope){
-    this.cust_func = function(name,id)
+app.service('getdata', function ($rootScope) {
+    this.cust_func = function (name, id) {
+        $rootScope.$broadcast('pname', { a: name, b: id })
+    };
+    var setname;
+    this.setMSG = function(msg)
     {
-        $rootScope.$broadcast('pname',{a:name,b:id})
-    }    
-})  
-app.controller('serv_example',function($scope,getdata,$rootScope){ 
-    $scope.show_div1 = false;   
-    $scope.call_serv = function(name,id)
+        setname = msg;
+    }
+    this.getMSG = function()
     {
-        getdata.cust_func(name,id)
+        alert(setname);
+    }
+})
+
+app.factory('factory_exam', function ($rootScope) {
+    var displayFact;
+
+    var addMSG = function (msg) {
+        displayFact = ' Hi Guest, Welcome to ' + msg;
+        //console.log(displayFact)
+    }
+    return {
+        setMSG: function (msg) {
+            addMSG(msg);
+        },  
+        getMSG: function () {
+            alert(displayFact);
+        },      
+    }
+})
+
+app.controller('serv_example', function ($scope, getdata, $rootScope, factory_exam) {    
+    $scope.show_div1 = false;
+    $scope.call_serv = function (name, id) {
+        getdata.cust_func(name, id)
+
+        ////////////// factory usage ///////////////
+        factory_exam.setMSG("Factory Demo");
+        factory_exam.getMSG();
+        ///////////// Service usage ///////////////
+        getdata.setMSG("Service Demo");
+        getdata.getMSG();
+
         $scope.show_div1 = true;
-    }  
-    $rootScope.$on('pname',function(event,arg){
+    }
+    $rootScope.$on('pname', function (event, arg) {
         $scope.name = arg.a;
         $scope.id = arg.b;
         console.log(arg)
@@ -311,7 +356,7 @@ app.controller('serv_example',function($scope,getdata,$rootScope){
 })
 
 /////////////////////// ng-repeat ///////////////////
-app.controller('directive',function($scope){
+app.controller('directive', function ($scope) {
     $scope.count = 0;
     $scope.records = [
         "Alfreds Futterkiste",

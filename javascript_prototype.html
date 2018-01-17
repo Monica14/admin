@@ -1,0 +1,55 @@
+<div class="col-md-12" ng-controller="myfunc">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        
+        <!-- /.box-header -->
+        <!-- form start -->
+
+        <form role="form">
+            <div class="box-body">
+                <div class="box-header with-border">
+                    <h3 class="box-title">prototype</h3>
+                </div>
+               <script>
+                   function person(name)
+                   {
+                       this.name = name;
+                       
+                   }
+                   person.prototype.addr = function() {
+                    return this.name;
+                   }
+                   person.prototype.members = ['1','2'];
+                   var p1 = new person("hjjhhjhj");
+                   var p2 = new person();
+                   p1.members.push('3')
+                   console.log(p1.members);
+                   console.log(p2.members);
+               </script>
+               <pre>
+                    function person(name)
+                    {
+                        this.name = name;
+                        
+                    }
+                    person.prototype.addr = function() {
+                     return this.name;
+                    }
+                    person.prototype.members = ['1','2'];
+                    var p1 = new person("hjjhhjhj");
+                    var p2 = new person();
+                    p1.members.push('3')
+                    console.log(p1.members);
+                    console.log(p2.members);
+               </pre>
+            </div>
+
+            <!-- /.box-body -->
+
+
+        </form>
+    </div>
+    <!-- /.box -->
+
+
+</div>

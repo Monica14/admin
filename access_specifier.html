@@ -1,0 +1,74 @@
+<div class="col-md-12" ng-controller="myfunc">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Concept</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+
+        <form role="form">
+            <div class="box-body">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Public</h3>
+                </div>
+                <script>
+
+                    ///////////////////////////// Public ///////////////////
+                    var person = function (name) {
+                        var fullname = name;
+                        return {
+                            setname: function () {
+                                return fullname;
+                            }
+                        }
+                    }
+                    var public_obj = new person("any thing");
+                    console.log(public_obj.setname());
+
+                    ///////////////////////////// Private ///////////////////
+                    var person = function (name) {
+                        var fullname = name;
+                        var setname = function () {
+                            return fullname;
+                        }();
+                    }
+                    var private_obj = new person("any thing");
+                    console.log(private_obj.setname)
+                </script>
+                <pre> 
+                    var person = function (name) {
+                        var fullname = name;
+                        return {
+                            setname: function () {
+                                return fullname;
+                            }
+                        }
+                    }
+                    var public_obj = new person("any thing");
+                    console.log(public_obj.setname());
+                       </pre>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Private</h3>
+                </div>
+                <pre>
+                        var person = function (name) {
+                            var fullname = name;
+                            var setname = function () {
+                                return fullname;
+                            }();
+                        }
+                        var private_obj = new person("any thing");
+                        console.log(private_obj.setname)
+                       </pre>
+            </div>
+
+            <!-- /.box-body -->
+
+
+        </form>
+    </div>
+    <!-- /.box -->
+
+
+</div>

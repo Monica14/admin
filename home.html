@@ -45,7 +45,10 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+<script>
+  console.log("app :");
+  console.log(app);
+</script>
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -151,6 +154,18 @@
                   <i class="fa fa-circle-o"></i>Methods</a>
               </li>
               <li>
+                  <a ui-sref="access_specifier">
+                    <i class="fa fa-circle-o"></i>Access Specifier</a>
+                </li>
+              <li>
+                <a ui-sref="javascript_prototype">
+                  <i class="fa fa-circle-o"></i>Prototype</a>
+              </li>
+              <li>
+                  <a ui-sref="oops_concept">
+                    <i class="fa fa-circle-o"></i>OOPs Concept</a>
+                </li>
+              <li>
                 <a ui-sref="setinterval_vs_settimeout">
                   <i class="fa fa-circle-o"></i> setInterval Vs setTimeout</a>
               </li>
@@ -185,6 +200,10 @@
               <li>
                 <a ui-sref="service_example">
                   <i class="fa fa-circle-o"></i> Services</a>
+              </li>
+              <li>
+                <a ui-sref="factory_example">
+                  <i class="fa fa-circle-o"></i> Factory</a>
               </li>
               <li>
                 <a ui-sref="directives">
@@ -332,6 +351,9 @@
                 <label for="exampleInputEmail1">Get name</label>
                 <input  ng-model="emp_name">
             </div> -->
+            <div class="row" ui-view='demo'>
+              sadsadsadas
+            </div>
 
         <div class="row" ui-view>
 

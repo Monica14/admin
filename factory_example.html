@@ -1,0 +1,25 @@
+<div class="col-md-12" ng-controller="serv_example">
+    <input type="checkbox" value="Call Factory" 
+    ng-click="call_serv('monica','1')" ng-model="showdiv"/> 
+    <input type="button" value="Call Factory" 
+    ng-click="call_serv('monica','1')"/> 
+    <pre>
+            app.factory('factory_exam', function ($rootScope) {
+                var displayFact;
+            
+                var addMSG = function (msg) {
+                    displayFact = ' Hi Guest, Welcome to ' + msg;
+                    //console.log(displayFact)
+                }
+                return {
+                    setMSG: function (msg) {
+                        addMSG(msg);
+                    },  
+                    getMSG: function () {
+                        alert(displayFact);
+                    },      
+                }
+            })
+    </pre>
+    
+</div>
