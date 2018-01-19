@@ -154,6 +154,9 @@ app.config(function ($stateProvider) {
         .state("factory_example", {
             templateUrl: "factory_example.html"
         })
+        .state("providers_example", {
+            templateUrl: "providers_example.html"
+        })
         .state("javascript_prototype", {
             templateUrl: "javascript_prototype.html"
         })
@@ -324,6 +327,12 @@ app.factory('factory_exam', function ($rootScope) {
         displayFact = ' Hi Guest, Welcome to ' + msg;
         //console.log(displayFact)
     }
+    /////////////////private function ////////////
+    // function getMSG()
+    // {
+    //     alert(displayFact);
+    // }
+
     return {
         setMSG: function (msg) {
             addMSG(msg);

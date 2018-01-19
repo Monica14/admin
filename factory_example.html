@@ -1,8 +1,13 @@
 <div class="col-md-12" ng-controller="serv_example">
-    <input type="checkbox" value="Call Factory" 
-    ng-click="call_serv('monica','1')" ng-model="showdiv"/> 
-    <input type="button" value="Call Factory" 
-    ng-click="call_serv('monica','1')"/> 
+    <input type="checkbox" value="Call Factory" ng-click="call_serv('monica','1')" ng-model="showdiv" />
+    <input type="button" value="Call Factory" ng-click="call_serv('monica','1')" />
+    <div class="box-body">
+        <p>
+            The more helpful concept which using factory we can implement is : <b>Encapsulation</b> patterns in AngularJS. The concept of Encapsulation is an important design pattern in most object-oriented
+            programming designs. Determining which properties and methods should be accessible is a nice forcing function
+            because it forces the programmer to think about how his or her could will be consumed.
+        </p>
+    </div>
     <pre>
             app.factory('factory_exam', function ($rootScope) {
                 var displayFact;
@@ -11,6 +16,12 @@
                     displayFact = ' Hi Guest, Welcome to ' + msg;
                     //console.log(displayFact)
                 }
+                ///////////////// private function ////////////
+                function getMSG()
+                {
+                     alert(displayFact);
+                }
+                ///////////////// public function ////////////
                 return {
                     setMSG: function (msg) {
                         addMSG(msg);
@@ -21,5 +32,5 @@
                 }
             })
     </pre>
-    
+
 </div>
