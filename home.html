@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Knowledge Sharing</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -45,10 +45,10 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-<script>
-  console.log("app :");
-  console.log(app);
-</script>
+  <script>
+    console.log("app :");
+    console.log(app);
+  </script>
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -121,7 +121,7 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
 
-          <li>
+          <!-- <li>
             <a href="admin_dashboard">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
@@ -129,8 +129,8 @@
                 <small class="label pull-right bg-green">new</small>
               </span>
             </a>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <a href="add_menu">
               <i class="fa fa-th"></i>
               <span>Add Menu</span>
@@ -138,7 +138,7 @@
                 <small class="label pull-right bg-green">new</small>
               </span>
             </a>
-          </li>
+          </li> -->
 
           <li class="treeview">
             <a href="#">
@@ -154,17 +154,17 @@
                   <i class="fa fa-circle-o"></i>Methods</a>
               </li>
               <li>
-                  <a ui-sref="access_specifier">
-                    <i class="fa fa-circle-o"></i>Access Specifier</a>
-                </li>
+                <a ui-sref="access_specifier">
+                  <i class="fa fa-circle-o"></i>Access Specifier</a>
+              </li>
               <li>
                 <a ui-sref="javascript_prototype">
                   <i class="fa fa-circle-o"></i>Prototype</a>
               </li>
               <li>
-                  <a ui-sref="oops_concept">
-                    <i class="fa fa-circle-o"></i>OOPs Concept</a>
-                </li>
+                <a ui-sref="oops_concept">
+                  <i class="fa fa-circle-o"></i>OOPs Concept</a>
+              </li>
               <li>
                 <a ui-sref="setinterval_vs_settimeout">
                   <i class="fa fa-circle-o"></i> setInterval Vs setTimeout</a>
@@ -271,7 +271,15 @@
               </li>
             </ul>
           </li>
-
+          <li>
+            <a ui-sref="git_flow">
+              <i class="fa fa-th"></i>
+              <span>Git</span>
+              <span class="pull-right-container">
+                <small class="label pull-right bg-green">new</small>
+              </span>
+            </a>
+          </li>
           <li>
             <a ui-sref="general">
               <i class="fa fa-th"></i>
@@ -295,7 +303,7 @@
             </ul>
           </li>
 
-          <li>
+          <!-- <li>
             <a href="pages/mailbox/mailbox.html">
               <i class="fa fa-envelope"></i>
               <span>Mailbox</span>
@@ -305,9 +313,9 @@
                 <small class="label pull-right bg-red">5</small>
               </span>
             </a>
-          </li>
+          </li> -->
 
-          <li class="treeview">
+          <!-- <li class="treeview">
             <a href="#">
               <i class="fa fa-share"></i>
               <span>Users</span>
@@ -325,7 +333,7 @@
                   <i class="fa fa-circle-o"></i> Search User</a>
               </li>
             </ul>
-          </li>
+          </li> -->
 
         </ul>
       </section>
@@ -355,12 +363,17 @@
                 <label for="exampleInputEmail1">Get name</label>
                 <input  ng-model="emp_name">
             </div> -->
-            <div class="row" ui-view='demo'>
-              sadsadsadas
-            </div>
+        <!-- <div class="row" ui-view='demo'>
+              <h1>Knowledge Share</h1>
+            </div> -->
 
         <div class="row" ui-view>
-
+          <div class="col-md-12" ng-controller="myfunc">
+            <div class="box box-primary">
+                <h3>Knowledge Sharing</h3>
+                <img src="dist/img/strenght-quote.jpg" class="user-image" alt="User Image" style="margin-left: 165px;">
+            </div>
+          </div>          
         </div>
 
       </section>
@@ -373,7 +386,7 @@
     <footer class="main-footer">
 
       <strong>Copyright &copy; 2017-2018
-        <a href="https://adminlte.io">Organizthings</a>.</strong> All rights reserved.
+        <a href="http://organizthings.com/">Organizthings</a>.</strong> All rights reserved.
     </footer>
 
 

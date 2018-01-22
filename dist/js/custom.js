@@ -168,6 +168,9 @@ app.config(function ($stateProvider) {
         })
         .state("demo", {
             templateUrl: "demo.html"
+        })
+        .state("git_flow", {
+            templateUrl: "git_flow.html"
         });
 });
 
