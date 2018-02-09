@@ -36,8 +36,8 @@
   <script src="./dist/js/custom.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.2/angular-datatables.min.js"></script>
-  <script type="text/javascript" src="http://localhost/pms/files/node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
-  <script type="text/javascript" src="http://localhost/pms/files/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+  <script type="text/javascript" src="./dist/js/ng-file-upload.min.js"></script>
+  <!-- <script type="text/javascript" src="http://localhost/pms/files/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script> -->
   <script type="text/javascript" src='https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js'></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -72,7 +72,7 @@
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
-
+        <!-- <input type="button" class="btn btn-default" value="Let's try It" style="margin-top: 10px;"> -->
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
             <!-- Messages: style can be found in dropdown.less-->
@@ -177,6 +177,22 @@
                 <a ui-sref="scope_var">
                   <i class="fa fa-circle-o"></i>variable scope</a>
               </li>
+            </ul>
+          </li>
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-pie-chart"></i>
+              <span>Typescript</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a ui-sref="typescript_concept">
+                  <i class="fa fa-circle-o"></i>Basic Concept</a>
+              </li>              
             </ul>
           </li>
 
@@ -370,10 +386,12 @@
         <div class="row" ui-view>
           <div class="col-md-12" ng-controller="myfunc">
             <div class="box box-primary">
-                <h3>Knowledge Sharing</h3>
-                <img src="dist/img/strenght-quote.jpg" class="user-image" alt="User Image" style="margin-left: 165px;">
+              <h3>Knowledge Sharing</h3>
+              <div contenteditable name="anyName" ng-model="Address" ng-keyup="get()" strip-br="true">aSAsa</div>
+              <!-- <input type="text" ng-model="Address"  ng-keyup="get()"> -->
+              <img src="dist/img/strenght-quote.jpg" class="img-responsive" alt="User Image">
             </div>
-          </div>          
+          </div>
         </div>
 
       </section>

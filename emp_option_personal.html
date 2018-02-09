@@ -1,0 +1,1202 @@
+<div class="col-lg-12">
+    <div class="mb-lg pull-left ng-scope">
+        <div class="pull-left pr-lg">
+            <a ui-sref="hris_employee" class="btn btn-xs btn-purple pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Switch to LIST">
+                <i class="fa fa-undo"> </i> Switch to LIST </a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <script language="javascript" type="text/javascript">
+        function getXMLHTTP() { //fuction to return the xml http object
+            var xmlhttp = false;
+            try {
+                xmlhttp = new XMLHttpRequest();
+            } catch (e) {
+                try {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    try {
+                        xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+                    } catch (e1) {
+                        xmlhttp = false;
+                    }
+                }
+            }
+            return xmlhttp;
+        }
+        function check_old_password(val) {
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/check_current_password/" + val;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+
+                            var result = req.responseText;
+                            if (result) {
+                                $("#id_old_error_msg").append(result);
+                                document.getElementById('change_old_password').disabled = true;
+                            } else {
+                                $("#id_old_error_msg").css("display", "none");
+                                document.getElementById('change_old_password').disabled = false;
+                            }
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+            }
+
+        }
+        function check_username_current_password(val) {
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/check_current_password/" + val;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+
+                            var result = req.responseText;
+                            if (result) {
+                                $("#id_user_error_msg").append(result);
+                                document.getElementById('change_username').disabled = true;
+                            } else {
+                                $("#id_user_error_msg").css("display", "none");
+                                document.getElementById('change_username').disabled = false;
+                            }
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+            }
+
+        }
+
+        function check_current_password(val) {
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/check_current_password/" + val;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+                            var result = req.responseText;
+                            if (result) {
+                                $("#id_error_msg").css("display", "block");
+                                document.getElementById('change_email').disabled = true;
+                            } else {
+                                $("#id_error_msg").css("display", "none");
+                                document.getElementById('change_email').disabled = false;
+                            }
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+            }
+
+        }
+
+        function get_milestone_by_id(project_id) {
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/get_milestone_by_project_id/" + project_id;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+                            var result = req.responseText;
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+            }
+
+        }
+        ;
+        function check_user_name(str) {
+
+            var user_name = $.trim(str);
+            var user_id = $.trim($("#user_id").val());
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/check_existing_user_name/" + user_name + "/" + user_id;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+                            var result = req.responseText;
+                            document.getElementById('username_result').innerHTML = result;
+                            var msg = result.trim();
+                            if (msg) {
+                                document.getElementById('sbtn').disabled = true;
+                            } else {
+                                document.getElementById('sbtn').disabled = false;
+                            }
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+
+
+            }
+        }
+        function get_item_name_by_id(stock_sub_category_id) {
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/get_item_name_by_id/" + stock_sub_category_id;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+                            var result = req.responseText;
+                            $("#item_name").html("<option value='' >Select Item Name</option>");
+                            $("#item_name").append(result);
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+            }
+
+        }
+        ;
+        function check_advance_amount(str) {
+
+            var amount = $.trim(str);
+            var user_id = $.trim($("#user_id").val());
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/check_advance_amount/" + amount + "/" + user_id;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+                            var result = req.responseText;
+                            document.getElementById('advance_amount').innerHTML = result;
+                            var msg = result.trim();
+                            if (msg) {
+                                document.getElementById('sbtn').disabled = true;
+                            } else {
+                                document.getElementById('sbtn').disabled = false;
+                            }
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+
+
+            }
+        }
+        function check_available_leave(end_date) {
+            var leave_category_id = $.trim($("#leave_category").val());
+            var user_id = $.trim($("#user_id").val());
+            var start_date = $.trim($("#start_date").val());
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/check_available_leave/" + user_id + "/" + start_date + "/" + end_date + "/" + leave_category_id;
+
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+                            var result = req.responseText;
+                            document.getElementById('username_result').innerHTML = result;
+                            var msg = result.trim();
+                            if (msg) {
+                                document.getElementById('sbtn').disabled = true;
+                            } else {
+                                document.getElementById('sbtn').disabled = false;
+                            }
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+
+
+            }
+        }
+        function get_employee_by_designations_id(designation_id) {
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/get_employee_by_designations_id/" + designation_id;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+                            var result = req.responseText;
+                            $("#employee").html("<option value='' >Select Employee...</option>");
+                            $("#employee").append(result);
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+            }
+
+        }
+        ;
+        function check_duplicate_emp_id(val) {
+            var base_url = 'http://hrms.coderitems.com/';
+            var strURL = base_url + "admin/global_controller/check_duplicate_emp_id/" + val;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+                            var result = req.responseText;
+                            if (result) {
+                                $("#id_duplicate_emp").css("display", "block");
+                                document.getElementById('sbtn').disabled = true;
+                            } else {
+                                $("#id_duplicate_emp").css("display", "none");
+                                document.getElementById('sbtn').disabled = false;
+                            }
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+            }
+
+
+        }
+        ;
+        function check_match_password(val) {
+            var base_url = 'http://hrms.coderitems.com/';
+            var password = $.trim($("#password").val());
+            var strURL = base_url + "admin/global_controller/check_match_password/" + val + "/" + password;
+            var req = getXMLHTTP();
+            if (req) {
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        // only if "OK"
+                        if (req.status == 200) {
+                            var result = req.responseText;
+                            if (result) {
+                                $("#passqord_match").append(result);
+                                document.getElementById('sbtn').disabled = true;
+                            } else {
+                                $("#passqord_match").css("display", "none");
+                                document.getElementById('sbtn').disabled = false;
+                            }
+
+                        } else {
+                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                        }
+                    }
+                }
+                req.open("POST", strURL, true);
+                req.send(null);
+            }
+        }
+
+    </script>
+    <div class="nav-tabs-custom">
+        <!-- Tabs within a box -->
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#manage" data-toggle="tab">Personal</a>
+            </li>
+            <li class="">
+                <a href="#new" data-toggle="tab">Employment</a>
+            </li>
+        </ul>
+        <div class="tab-content bg-white">
+            <!-- ************** general *************-->
+            <div class="tab-pane active" id="manage">
+                <form role="form" data-parsley-validate="" novalidate="" id="userform" enctype="multipart/form-data" action="http://hrms.coderitems.com/admin/user/save_user"
+                    method="post" class="form-horizontal form-groups-bordered">
+
+                    <input id="username_flag" value="" type="hidden">
+                    <input name="user_id" value="" type="hidden">
+                    <input name="account_details_id" value="" type="hidden">
+
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Employment ID </strong>
+                        </label>
+                        <div class="col-sm-5">
+                            <input data-parsley-type="alphanum" data-parsley-trigger="keyup" class="input-sm form-control" value="" placeholder="e.g 15351"
+                                name="employment_id" onchange="check_duplicate_emp_id(this.value)" data-parsley-id="6" type="text">
+                        </div>
+                        <div class="col-sm-4" id="id_duplicate_emp">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong> Username</strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input name="username" onchange="check_user_name(this.value)" placeholder="e.g Enter your  Username" value="" class="input-sm form-control"
+                                required="" data-parsley-id="8" type="text">
+                        </div>
+                        <div class="col-sm-4" id="username_result">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Password </strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input id="password" placeholder="Password" name="password" class="input-sm form-control" required="" data-parsley-id="10"
+                                type="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Confirm Password </strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input onchange="check_match_password(this.value)" placeholder="Confirm Password" name="confirm_password" class="input-sm form-control"
+                                required="" data-parsley-id="12" type="password">
+                        </div>
+                        <div class="col-sm-3" id="passqord_match" style="display: none">
+                            <small style="padding-left:10px;color:red;font-size:10px">Your Entered Password Do Not Match !</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Email </strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input placeholder="e.g " name="email" value="" class="input-sm form-control" required="" data-parsley-id="14" type="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3"></label>
+                        <div class="col-sm-5">
+                            <button type="submit" id="sbtn" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane " id="new">
+                <form role="form" data-parsley-validate="" novalidate="" id="userform" enctype="multipart/form-data" action="http://hrms.coderitems.com/admin/user/save_user"
+                    method="post" class="form-horizontal form-groups-bordered">
+
+                    <input id="username_flag" value="" type="hidden">
+                    <input name="user_id" value="" type="hidden">
+                    <input name="account_details_id" value="" type="hidden">
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Full Name </strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input class="input-sm form-control" value="" placeholder="e.g Enter your  Full Name" name="fullname" required="" data-parsley-id="4"
+                                type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Employment ID </strong>
+                        </label>
+                        <div class="col-sm-5">
+                            <input data-parsley-type="alphanum" data-parsley-trigger="keyup" class="input-sm form-control" value="" placeholder="e.g 15351"
+                                name="employment_id" onchange="check_duplicate_emp_id(this.value)" data-parsley-id="6" type="text">
+                        </div>
+                        <div class="col-sm-4" id="id_duplicate_emp">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong> Username</strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input name="username" onchange="check_user_name(this.value)" placeholder="e.g Enter your  Username" value="" class="input-sm form-control"
+                                required="" data-parsley-id="8" type="text">
+                        </div>
+                        <div class="col-sm-4" id="username_result">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Password </strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input id="password" placeholder="Password" name="password" class="input-sm form-control" required="" data-parsley-id="10"
+                                type="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Confirm Password </strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input onchange="check_match_password(this.value)" placeholder="Confirm Password" name="confirm_password" class="input-sm form-control"
+                                required="" data-parsley-id="12" type="password">
+                        </div>
+                        <div class="col-sm-3" id="passqord_match" style="display: none">
+                            <small style="padding-left:10px;color:red;font-size:10px">Your Entered Password Do Not Match !</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Email </strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input placeholder="e.g " name="email" value="" class="input-sm form-control" required="" data-parsley-id="14" type="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Locale</strong>
+                        </label>
+                        <div class="col-lg-5">
+                            <select class="form-control select_box select2-hidden-accessible" style="width: 100%" name="locale" data-parsley-id="16"
+                                tabindex="-1" aria-hidden="true">
+
+                                <option value="aa_DJ" selected="selected" lang="aa">Afar (Djibouti)</option>
+                                <option value="aa_ER" lang="aa">Afar (Eritrea)</option>
+                                <option value="aa_ET" lang="aa">Afar (Ethiopia)</option>
+                                <option value="af_ZA" lang="af">Afrikaans (South Africa)</option>
+                                <option value="am_ET" lang="am">Amharic (Ethiopia)</option>
+                                <option value="an_ES" lang="an">Aragonese (Spain)</option>
+                                <option value="ar_AE" lang="ar">Arabic (United Arab Emirates)</option>
+                                <option value="ar_BH" lang="ar">Arabic (Bahrain)</option>
+                                <option value="ar_DZ" lang="ar">Arabic (Algeria)</option>
+                                <option value="ar_EG" lang="ar">Arabic (Egypt)</option>
+                                <option value="ar_IN" lang="ar">Arabic (India)</option>
+                                <option value="ar_IQ" lang="ar">Arabic (Iraq)</option>
+                                <option value="ar_JO" lang="ar">Arabic (Jordan)</option>
+                                <option value="ar_KW" lang="ar">Arabic (Kuwait)</option>
+                                <option value="ar_LB" lang="ar">Arabic (Lebanon)</option>
+                                <option value="ar_LY" lang="ar">Arabic (Libya)</option>
+                                <option value="ar_MA" lang="ar">Arabic (Morocco)</option>
+                                <option value="ar_OM" lang="ar">Arabic (Oman)</option>
+                                <option value="ar_QA" lang="ar">Arabic (Qatar)</option>
+                                <option value="ar_SA" lang="ar">Arabic (Saudi Arabia)</option>
+                                <option value="ar_SD" lang="ar">Arabic (Sudan)</option>
+                                <option value="ar_SY" lang="ar">Arabic (Syria)</option>
+                                <option value="ar_TN" lang="ar">Arabic (Tunisia)</option>
+                                <option value="ar_YE" lang="ar">Arabic (Yemen)</option>
+                                <option value="ast_ES" lang="ast">Asturian (Spain)</option>
+                                <option value="as_IN" lang="as">Assamese (India)</option>
+                                <option value="az_AZ" lang="az">Azerbaijani (Azerbaijan)</option>
+                                <option value="az_TR" lang="az">Azerbaijani (Turkey)</option>
+                                <option value="bem_ZM" lang="bem">Bemba (Zambia)</option>
+                                <option value="ber_DZ" lang="ber">Berber (Algeria)</option>
+                                <option value="ber_MA" lang="ber">Berber (Morocco)</option>
+                                <option value="be_BY" lang="be">Belarusian (Belarus)</option>
+                                <option value="bg_BG" lang="bg">Bulgarian (Bulgaria)</option>
+                                <option value="bn_BD" lang="bn">Bengali (Bangladesh)</option>
+                                <option value="bn_IN" lang="bn">Bengali (India)</option>
+                                <option value="bo_CN" lang="bo">Tibetan (China)</option>
+                                <option value="bo_IN" lang="bo">Tibetan (India)</option>
+                                <option value="br_FR" lang="br">Breton (France)</option>
+                                <option value="bs_BA" lang="bs">Bosnian (Bosnia and Herzegovina)</option>
+                                <option value="byn_ER" lang="byn">Blin (Eritrea)</option>
+                                <option value="ca_AD" lang="ca">Catalan (Andorra)</option>
+                                <option value="ca_ES" lang="ca">Catalan (Spain)</option>
+                                <option value="ca_FR" lang="ca">Catalan (France)</option>
+                                <option value="ca_IT" lang="ca">Catalan (Italy)</option>
+                                <option value="crh_UA" lang="crh">Crimean Turkish (Ukraine)</option>
+                                <option value="csb_PL" lang="csb">Kashubian (Poland)</option>
+                                <option value="cs_CZ" lang="cs">Czech (Czech Republic)</option>
+                                <option value="cv_RU" lang="cv">Chuvash (Russia)</option>
+                                <option value="cy_GB" lang="cy">Welsh (United Kingdom)</option>
+                                <option value="da_DK" lang="da">Danish (Denmark)</option>
+                                <option value="de_AT" lang="de">German (Austria)</option>
+                                <option value="de_BE" lang="de">German (Belgium)</option>
+                                <option value="de_CH" lang="de">German (Switzerland)</option>
+                                <option value="de_DE" lang="de">German (Germany)</option>
+                                <option value="de_LI" lang="de">German (Liechtenstein)</option>
+                                <option value="de_LU" lang="de">German (Luxembourg)</option>
+                                <option value="dv_MV" lang="dv">Divehi (Maldives)</option>
+                                <option value="dz_BT" lang="dz">Dzongkha (Bhutan)</option>
+                                <option value="ee_GH" lang="ee">Ewe (Ghana)</option>
+                                <option value="el_CY" lang="el">Greek (Cyprus)</option>
+                                <option value="el_GR" lang="el">Greek (Greece)</option>
+                                <option value="en_AG" lang="en">English (Antigua and Barbuda)</option>
+                                <option value="en_AS" lang="en">English (American Samoa)</option>
+                                <option value="en_AU" lang="en">English (Australia)</option>
+                                <option value="en_BW" lang="en">English (Botswana)</option>
+                                <option value="en_CA" lang="en">English (Canada)</option>
+                                <option value="en_DK" lang="en">English (Denmark)</option>
+                                <option value="en_GB" lang="en">English (United Kingdom)</option>
+                                <option value="en_GU" lang="en">English (Guam)</option>
+                                <option value="en_HK" lang="en">English (Hong Kong SAR China)</option>
+                                <option value="en_IE" lang="en">English (Ireland)</option>
+                                <option value="en_IN" lang="en">English (India)</option>
+                                <option value="en_JM" lang="en">English (Jamaica)</option>
+                                <option value="en_MH" lang="en">English (Marshall Islands)</option>
+                                <option value="en_MP" lang="en">English (Northern Mariana Islands)</option>
+                                <option value="en_MU" lang="en">English (Mauritius)</option>
+                                <option value="en_NG" lang="en">English (Nigeria)</option>
+                                <option value="en_NZ" lang="en">English (New Zealand)</option>
+                                <option value="en_PH" lang="en">English (Philippines)</option>
+                                <option value="en_SG" lang="en">English (Singapore)</option>
+                                <option value="en_TT" lang="en">English (Trinidad and Tobago)</option>
+                                <option value="en_US" lang="en">English (United States)</option>
+                                <option value="en_VI" lang="en">English (Virgin Islands)</option>
+                                <option value="en_ZA" lang="en">English (South Africa)</option>
+                                <option value="en_ZM" lang="en">English (Zambia)</option>
+                                <option value="en_ZW" lang="en">English (Zimbabwe)</option>
+                                <option value="eo" lang="eo">Esperanto</option>
+                                <option value="es_AR" lang="es">Spanish (Argentina)</option>
+                                <option value="es_BO" lang="es">Spanish (Bolivia)</option>
+                                <option value="es_CL" lang="es">Spanish (Chile)</option>
+                                <option value="es_CO" lang="es">Spanish (Colombia)</option>
+                                <option value="es_CR" lang="es">Spanish (Costa Rica)</option>
+                                <option value="es_DO" lang="es">Spanish (Dominican Republic)</option>
+                                <option value="es_EC" lang="es">Spanish (Ecuador)</option>
+                                <option value="es_ES" lang="es">Spanish (Spain)</option>
+                                <option value="es_GT" lang="es">Spanish (Guatemala)</option>
+                                <option value="es_HN" lang="es">Spanish (Honduras)</option>
+                                <option value="es_MX" lang="es">Spanish (Mexico)</option>
+                                <option value="es_NI" lang="es">Spanish (Nicaragua)</option>
+                                <option value="es_PA" lang="es">Spanish (Panama)</option>
+                                <option value="es_PE" lang="es">Spanish (Peru)</option>
+                                <option value="es_PR" lang="es">Spanish (Puerto Rico)</option>
+                                <option value="es_PY" lang="es">Spanish (Paraguay)</option>
+                                <option value="es_SV" lang="es">Spanish (El Salvador)</option>
+                                <option value="es_US" lang="es">Spanish (United States)</option>
+                                <option value="es_UY" lang="es">Spanish (Uruguay)</option>
+                                <option value="es_VE" lang="es">Spanish (Venezuela)</option>
+                                <option value="et_EE" lang="et">Estonian (Estonia)</option>
+                                <option value="eu_ES" lang="eu">Basque (Spain)</option>
+                                <option value="eu_FR" lang="eu">Basque (France)</option>
+                                <option value="fa_AF" lang="fa">Persian (Afghanistan)</option>
+                                <option value="fa_IR" lang="fa">Persian (Iran)</option>
+                                <option value="ff_SN" lang="ff">Fulah (Senegal)</option>
+                                <option value="fil_PH" lang="fil">Filipino (Philippines)</option>
+                                <option value="fi_FI" lang="fi">Finnish (Finland)</option>
+                                <option value="fo_FO" lang="fo">Faroese (Faroe Islands)</option>
+                                <option value="fr_BE" lang="fr">French (Belgium)</option>
+                                <option value="fr_BF" lang="fr">French (Burkina Faso)</option>
+                                <option value="fr_BI" lang="fr">French (Burundi)</option>
+                                <option value="fr_BJ" lang="fr">French (Benin)</option>
+                                <option value="fr_CA" lang="fr">French (Canada)</option>
+                                <option value="fr_CF" lang="fr">French (Central African Republic)</option>
+                                <option value="fr_CG" lang="fr">French (Congo)</option>
+                                <option value="fr_CH" lang="fr">French (Switzerland)</option>
+                                <option value="fr_CM" lang="fr">French (Cameroon)</option>
+                                <option value="fr_FR" lang="fr">French (France)</option>
+                                <option value="fr_GA" lang="fr">French (Gabon)</option>
+                                <option value="fr_GN" lang="fr">French (Guinea)</option>
+                                <option value="fr_GP" lang="fr">French (Guadeloupe)</option>
+                                <option value="fr_GQ" lang="fr">French (Equatorial Guinea)</option>
+                                <option value="fr_KM" lang="fr">French (Comoros)</option>
+                                <option value="fr_LU" lang="fr">French (Luxembourg)</option>
+                                <option value="fr_MC" lang="fr">French (Monaco)</option>
+                                <option value="fr_MG" lang="fr">French (Madagascar)</option>
+                                <option value="fr_ML" lang="fr">French (Mali)</option>
+                                <option value="fr_MQ" lang="fr">French (Martinique)</option>
+                                <option value="fr_NE" lang="fr">French (Niger)</option>
+                                <option value="fr_SN" lang="fr">French (Senegal)</option>
+                                <option value="fr_TD" lang="fr">French (Chad)</option>
+                                <option value="fr_TG" lang="fr">French (Togo)</option>
+                                <option value="fur_IT" lang="fur">Friulian (Italy)</option>
+                                <option value="fy_DE" lang="fy">Western Frisian (Germany)</option>
+                                <option value="fy_NL" lang="fy">Western Frisian (Netherlands)</option>
+                                <option value="ga_IE" lang="ga">Irish (Ireland)</option>
+                                <option value="gd_GB" lang="gd">Scottish Gaelic (United Kingdom)</option>
+                                <option value="gez_ER" lang="gez">Geez (Eritrea)</option>
+                                <option value="gez_ET" lang="gez">Geez (Ethiopia)</option>
+                                <option value="gl_ES" lang="gl">Galician (Spain)</option>
+                                <option value="gu_IN" lang="gu">Gujarati (India)</option>
+                                <option value="gv_GB" lang="gv">Manx (United Kingdom)</option>
+                                <option value="ha_NG" lang="ha">Hausa (Nigeria)</option>
+                                <option value="he_IL" lang="he">Hebrew (Israel)</option>
+                                <option value="hi_IN" lang="hi">Hindi (India)</option>
+                                <option value="hr_HR" lang="hr">Croatian (Croatia)</option>
+                                <option value="hsb_DE" lang="hsb">Upper Sorbian (Germany)</option>
+                                <option value="ht_HT" lang="ht">Haitian (Haiti)</option>
+                                <option value="hu_HU" lang="hu">Hungarian (Hungary)</option>
+                                <option value="hy_AM" lang="hy">Armenian (Armenia)</option>
+                                <option value="ia" lang="ia">Interlingua</option>
+                                <option value="id_ID" lang="id">Indonesian (Indonesia)</option>
+                                <option value="ig_NG" lang="ig">Igbo (Nigeria)</option>
+                                <option value="ik_CA" lang="ik">Inupiaq (Canada)</option>
+                                <option value="is_IS" lang="is">Icelandic (Iceland)</option>
+                                <option value="it_CH" lang="it">Italian (Switzerland)</option>
+                                <option value="it_IT" lang="it">Italian (Italy)</option>
+                                <option value="iu_CA" lang="iu">Inuktitut (Canada)</option>
+                                <option value="ja_JP" lang="ja">Japanese (Japan)</option>
+                                <option value="ka_GE" lang="ka">Georgian (Georgia)</option>
+                                <option value="kk_KZ" lang="kk">Kazakh (Kazakhstan)</option>
+                                <option value="kl_GL" lang="kl">Kalaallisut (Greenland)</option>
+                                <option value="km_KH" lang="km">Khmer (Cambodia)</option>
+                                <option value="kn_IN" lang="kn">Kannada (India)</option>
+                                <option value="kok_IN" lang="kok">Konkani (India)</option>
+                                <option value="ko_KR" lang="ko">Korean (South Korea)</option>
+                                <option value="ks_IN" lang="ks">Kashmiri (India)</option>
+                                <option value="ku_TR" lang="ku">Kurdish (Turkey)</option>
+                                <option value="kw_GB" lang="kw">Cornish (United Kingdom)</option>
+                                <option value="ky_KG" lang="ky">Kirghiz (Kyrgyzstan)</option>
+                                <option value="lg_UG" lang="lg">Ganda (Uganda)</option>
+                                <option value="li_BE" lang="li">Limburgish (Belgium)</option>
+                                <option value="li_NL" lang="li">Limburgish (Netherlands)</option>
+                                <option value="lo_LA" lang="lo">Lao (Laos)</option>
+                                <option value="lt_LT" lang="lt">Lithuanian (Lithuania)</option>
+                                <option value="lv_LV" lang="lv">Latvian (Latvia)</option>
+                                <option value="mai_IN" lang="mai">Maithili (India)</option>
+                                <option value="mg_MG" lang="mg">Malagasy (Madagascar)</option>
+                                <option value="mi_NZ" lang="mi">Maori (New Zealand)</option>
+                                <option value="mk_MK" lang="mk">Macedonian (Macedonia)</option>
+                                <option value="ml_IN" lang="ml">Malayalam (India)</option>
+                                <option value="mn_MN" lang="mn">Mongolian (Mongolia)</option>
+                                <option value="mr_IN" lang="mr">Marathi (India)</option>
+                                <option value="ms_BN" lang="ms">Malay (Brunei)</option>
+                                <option value="ms_MY" lang="ms">Malay (Malaysia)</option>
+                                <option value="mt_MT" lang="mt">Maltese (Malta)</option>
+                                <option value="my_MM" lang="my">Burmese (Myanmar)</option>
+                                <option value="naq_NA" lang="naq">Namibia</option>
+                                <option value="nb_NO" lang="nb">Norwegian Bokm?l (Norway)</option>
+                                <option value="nds_DE" lang="nds">Low German (Germany)</option>
+                                <option value="nds_NL" lang="nds">Low German (Netherlands)</option>
+                                <option value="ne_NP" lang="ne">Nepali (Nepal)</option>
+                                <option value="nl_AW" lang="nl">Dutch (Aruba)</option>
+                                <option value="nl_BE" lang="nl">Dutch (Belgium)</option>
+                                <option value="nl_NL" lang="nl">Dutch (Netherlands)</option>
+                                <option value="nn_NO" lang="nn">Norwegian Nynorsk (Norway)</option>
+                                <option value="no_NO" lang="no">Norwegian (Norway)</option>
+                                <option value="nr_ZA" lang="nr">South Ndebele (South Africa)</option>
+                                <option value="nso_ZA" lang="nso">Northern Sotho (South Africa)</option>
+                                <option value="oc_FR" lang="oc">Occitan (France)</option>
+                                <option value="om_ET" lang="om">Oromo (Ethiopia)</option>
+                                <option value="om_KE" lang="om">Oromo (Kenya)</option>
+                                <option value="or_IN" lang="or">Oriya (India)</option>
+                                <option value="os_RU" lang="os">Ossetic (Russia)</option>
+                                <option value="pap_AN" lang="pap">Papiamento (Netherlands Antilles)</option>
+                                <option value="pa_IN" lang="pa">Punjabi (India)</option>
+                                <option value="pa_PK" lang="pa">Punjabi (Pakistan)</option>
+                                <option value="pl_PL" lang="pl">Polish (Poland)</option>
+                                <option value="ps_AF" lang="ps">Pashto (Afghanistan)</option>
+                                <option value="pt_BR" lang="pt">Portuguese (Brazil)</option>
+                                <option value="pt_GW" lang="pt">Portuguese (Guinea-Bissau)</option>
+                                <option value="pt_PT" lang="pt">Portuguese (Portugal)</option>
+                                <option value="ro_MD" lang="ro">Romanian (Moldova)</option>
+                                <option value="ro_RO" lang="ro">Romanian (Romania)</option>
+                                <option value="ru_RU" lang="ru">Russian (Russia)</option>
+                                <option value="ru_UA" lang="ru">Russian (Ukraine)</option>
+                                <option value="rw_RW" lang="rw">Kinyarwanda (Rwanda)</option>
+                                <option value="sa_IN" lang="sa">Sanskrit (India)</option>
+                                <option value="sc_IT" lang="sc">Sardinian (Italy)</option>
+                                <option value="sd_IN" lang="sd">Sindhi (India)</option>
+                                <option value="seh_MZ" lang="seh">Sena (Mozambique)</option>
+                                <option value="se_NO" lang="se">Northern Sami (Norway)</option>
+                                <option value="sid_ET" lang="sid">Sidamo (Ethiopia)</option>
+                                <option value="si_LK" lang="si">Sinhala (Sri Lanka)</option>
+                                <option value="sk_SK" lang="sk">Slovak (Slovakia)</option>
+                                <option value="sl_SI" lang="sl">Slovenian (Slovenia)</option>
+                                <option value="sn_ZW" lang="sn">Shona (Zimbabwe)</option>
+                                <option value="so_DJ" lang="so">Somali (Djibouti)</option>
+                                <option value="so_ET" lang="so">Somali (Ethiopia)</option>
+                                <option value="so_KE" lang="so">Somali (Kenya)</option>
+                                <option value="so_SO" lang="so">Somali (Somalia)</option>
+                                <option value="sq_AL" lang="sq">Albanian (Albania)</option>
+                                <option value="sq_MK" lang="sq">Albanian (Macedonia)</option>
+                                <option value="sr_BA" lang="sr">Serbian (Bosnia and Herzegovina)</option>
+                                <option value="sr_ME" lang="sr">Serbian (Montenegro)</option>
+                                <option value="sr_RS" lang="sr">Serbian (Serbia)</option>
+                                <option value="ss_ZA" lang="ss">Swati (South Africa)</option>
+                                <option value="st_ZA" lang="st">Southern Sotho (South Africa)</option>
+                                <option value="sv_FI" lang="sv">Swedish (Finland)</option>
+                                <option value="sv_SE" lang="sv">Swedish (Sweden)</option>
+                                <option value="sw_KE" lang="sw">Swahili (Kenya)</option>
+                                <option value="sw_TZ" lang="sw">Swahili (Tanzania)</option>
+                                <option value="ta_IN" lang="ta">Tamil (India)</option>
+                                <option value="teo_UG" lang="teo">Teso (Uganda)</option>
+                                <option value="te_IN" lang="te">Telugu (India)</option>
+                                <option value="tg_TJ" lang="tg">Tajik (Tajikistan)</option>
+                                <option value="th_TH" lang="th">Thai (Thailand)</option>
+                                <option value="tig_ER" lang="tig">Tigre (Eritrea)</option>
+                                <option value="ti_ER" lang="ti">Tigrinya (Eritrea)</option>
+                                <option value="ti_ET" lang="ti">Tigrinya (Ethiopia)</option>
+                                <option value="tk_TM" lang="tk">Turkmen (Turkmenistan)</option>
+                                <option value="tl_PH" lang="tl">Tagalog (Philippines)</option>
+                                <option value="tn_ZA" lang="tn">Tswana (South Africa)</option>
+                                <option value="to_TO" lang="to">Tongan (Tonga)</option>
+                                <option value="tr_CY" lang="tr">Turkish (Cyprus)</option>
+                                <option value="tr_TR" lang="tr">Turkish (Turkey)</option>
+                                <option value="ts_ZA" lang="ts">Tsonga (South Africa)</option>
+                                <option value="tt_RU" lang="tt">Tatar (Russia)</option>
+                                <option value="ug_CN" lang="ug">Uighur (China)</option>
+                                <option value="uk_UA" lang="uk">Ukrainian (Ukraine)</option>
+                                <option value="ur_PK" lang="ur">Urdu (Pakistan)</option>
+                                <option value="uz_UZ" lang="uz">Uzbek (Uzbekistan)</option>
+                                <option value="ve_ZA" lang="ve">Venda (South Africa)</option>
+                                <option value="vi_VN" lang="vi">Vietnamese (Vietnam)</option>
+                                <option value="wa_BE" lang="wa">Walloon (Belgium)</option>
+                                <option value="wo_SN" lang="wo">Wolof (Senegal)</option>
+                                <option value="xh_ZA" lang="xh">Xhosa (South Africa)</option>
+                                <option value="yi_US" lang="yi">Yiddish (United States)</option>
+                                <option value="yo_NG" lang="yo">Yoruba (Nigeria)</option>
+                                <option value="zh_CN" lang="zh">Chinese (China)</option>
+                                <option value="zh_HK" lang="zh">Chinese (Hong Kong SAR China)</option>
+                                <option value="zh_SG" lang="zh">Chinese (Singapore)</option>
+                                <option value="zh_TW" lang="zh">Chinese (Taiwan)</option>
+                                <option value="zu_ZA" lang="zu">Zulu (South Africa)</option>
+                            </select>
+                            <span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;">
+                                <span class="selection">
+                                    <span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false"
+                                        tabindex="0" aria-labelledby="select2-locale-47-container">
+                                        <span class="select2-selection__rendered" id="select2-locale-47-container" title="Afar (Djibouti)">Afar (Djibouti)</span>
+                                        <span class="select2-selection__arrow" role="presentation">
+                                            <b role="presentation"></b>
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="dropdown-wrapper" aria-hidden="true"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Language</strong>
+                        </label>
+                        <div class="col-sm-5">
+                            <select name="language" class="form-control select_box select2-hidden-accessible" style="width: 100%" data-parsley-id="18"
+                                tabindex="-1" aria-hidden="true">
+                                <option value="arabic">Arabic</option>
+                                <option value="chinese">Chinese</option>
+                                <option value="czech">Czech</option>
+                                <option value="danish">Danish</option>
+                                <option value="dutch">Dutch</option>
+                                <option value="english" selected="selected">English</option>
+                                <option value="french">French</option>
+                                <option value="german">German</option>
+                                <option value="greek">Greek</option>
+                                <option value="gujarati">Gujarati</option>
+                                <option value="hindi">Hindi</option>
+                                <option value="indonesian">Indonesian</option>
+                                <option value="italian">Italian</option>
+                                <option value="japanese">Japanese</option>
+                                <option value="norwegian">Norwegian</option>
+                                <option value="polish">Polish</option>
+                                <option value="portuguese">Portuguese</option>
+                                <option value="romanian">Romanian</option>
+                                <option value="russian">Russian</option>
+                                <option value="spanish">Spanish</option>
+                                <option value="turkish">Turkish</option>
+                            </select>
+                            <span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;">
+                                <span class="selection">
+                                    <span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false"
+                                        tabindex="0" aria-labelledby="select2-language-x0-container">
+                                        <span class="select2-selection__rendered" id="select2-language-x0-container" title="English">English</span>
+                                        <span class="select2-selection__arrow" role="presentation">
+                                            <b role="presentation"></b>
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="dropdown-wrapper" aria-hidden="true"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Phone </strong>
+                        </label>
+                        <div class="col-sm-5">
+                            <input class="input-sm form-control" value="" name="phone" placeholder="e.g " data-parsley-id="20" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Mobile </strong>
+                        </label>
+                        <div class="col-sm-5">
+                            <input class="input-sm form-control" value="" name="mobile" placeholder="e.g " data-parsley-id="22" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            <strong>Skype id </strong>
+                        </label>
+                        <div class="col-sm-5">
+                            <input class="input-sm form-control" value="" name="skype" placeholder="e.g " data-parsley-id="24" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">
+                            <strong>Profile Photo</strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-5">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 210px;">
+                                    <img src="http://placehold.it/350x260" alt="Please Connect Your Internet">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="width: 210px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileinput-new">
+                                            <input name="avatar" value="upload" data-buttontext="Choose File" id="myImg" data-parsley-id="26" type="file">
+                                            <span class="fileinput-exists">Change</span>
+                                        </span>
+                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+
+                                    </span>
+                                </div>
+
+                                <div id="valid_msg" style="color: #e11221"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-3 control-label">
+                            <strong>User Type</strong>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <select id="user_type" name="role_id" class="form-control" required="" data-parsley-id="28">
+                                <option value="">Select User Type</option>
+                                <option value="1">Admin</option>
+                                <option value="3">Staff</option>
+                                <option value="2">Client</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6 row">
+                            <div id="client_permission" class="panel panel-custom " style="display: none;">
+                                <div class="panel-heading">
+                                    <h4 class="modal-title" id="myModalLabel">Select Client &amp; Permission</h4>
+                                </div>
+                                <style type="text/css">
+                                    .toggle.btn-xs {
+                                        min-width: 59px;
+                                    }
+                                </style>
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">
+                                            <strong>Company </strong>
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control select_box select2-hidden-accessible" style="width: 100%" name="company" data-parsley-id="30"
+                                                tabindex="-1" aria-hidden="true">
+                                                <option value="-">Select Client</option>
+                                                <option value="1">Mr John Doe</option>
+                                            </select>
+                                            <span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;">
+                                                <span class="selection">
+                                                    <span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false"
+                                                        tabindex="0" aria-labelledby="select2-company-cq-container">
+                                                        <span class="select2-selection__rendered" id="select2-company-cq-container" title="Select Client">Select Client</span>
+                                                        <span class="select2-selection__arrow" role="presentation">
+                                                            <b role="presentation"></b>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                                <span class="dropdown-wrapper" aria-hidden="true"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <input name="dashboard" value="17" checked="" type="hidden">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Mailbox</label>
+                                        <div class="col-lg-6 checkbox">
+                                            <div class="toggle btn btn-danger off btn-xs" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                <input class="client_permission" data-id="" data-toggle="toggle" name="mailbox" value="18" data-on="Yes" data-off="No" data-onstyle="success btn-xs"
+                                                    data-offstyle="danger btn-xs" data-parsley-multiple="mailbox" data-parsley-id="33"
+                                                    type="checkbox">
+                                                <div class="toggle-group">
+                                                    <label class="btn btn-success btn-xs toggle-on">Yes</label>
+                                                    <label class="btn btn-danger btn-xs active toggle-off">No</label>
+                                                    <span class="toggle-handle btn btn-default"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Tickets</label>
+                                        <div class="col-lg-6 checkbox">
+                                            <div class="toggle btn btn-danger off btn-xs" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                <input class="client_permission" data-id="" data-toggle="toggle" name="tickets" value="6" data-on="Yes" data-off="No" data-onstyle="success btn-xs"
+                                                    data-offstyle="danger btn-xs" data-parsley-multiple="tickets" data-parsley-id="36"
+                                                    type="checkbox">
+                                                <div class="toggle-group">
+                                                    <label class="btn btn-success btn-xs toggle-on">Yes</label>
+                                                    <label class="btn btn-danger btn-xs active toggle-off">No</label>
+                                                    <span class="toggle-handle btn btn-default"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Users</label>
+                                        <div class="col-lg-6 checkbox">
+                                            <div class="toggle btn btn-danger off btn-xs" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                <input class="client_permission" data-id="" data-toggle="toggle" name="users" value="8" data-on="Yes" data-off="No" data-onstyle="success btn-xs"
+                                                    data-offstyle="danger btn-xs" data-parsley-multiple="users" data-parsley-id="39"
+                                                    type="checkbox">
+                                                <div class="toggle-group">
+                                                    <label class="btn btn-success btn-xs toggle-on">Yes</label>
+                                                    <label class="btn btn-danger btn-xs active toggle-off">No</label>
+                                                    <span class="toggle-handle btn btn-default"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Settings</label>
+                                        <div class="col-lg-6 checkbox">
+                                            <div class="toggle btn btn-danger off btn-xs" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                <input class="client_permission" data-id="" data-toggle="toggle" name="settings" value="9" data-on="Yes" data-off="No" data-onstyle="success btn-xs"
+                                                    data-offstyle="danger btn-xs" data-parsley-multiple="settings" data-parsley-id="42"
+                                                    type="checkbox">
+                                                <div class="toggle-group">
+                                                    <label class="btn btn-success btn-xs toggle-on">Yes</label>
+                                                    <label class="btn btn-danger btn-xs active toggle-off">No</label>
+                                                    <span class="toggle-handle btn btn-default"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Private Chat</label>
+                                        <div class="col-lg-6 checkbox">
+                                            <div class="toggle btn btn-danger off btn-xs" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                <input class="client_permission" data-id="" data-toggle="toggle" name="private_chat" value="19" data-on="Yes" data-off="No"
+                                                    data-onstyle="success btn-xs" data-offstyle="danger btn-xs" data-parsley-multiple="private_chat"
+                                                    data-parsley-id="45" type="checkbox">
+                                                <div class="toggle-group">
+                                                    <label class="btn btn-success btn-xs toggle-on">Yes</label>
+                                                    <label class="btn btn-danger btn-xs active toggle-off">No</label>
+                                                    <span class="toggle-handle btn btn-default"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="form-group" id="department" style="display: none;">
+                        <label class="col-sm-3 control-label">
+                            <strong>Designation </strong>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <select class="form-control select_box department select2-hidden-accessible" style="width: 100%" name="designations_id" data-parsley-id="47"
+                                tabindex="-1" aria-hidden="true">
+                                <option value="">Select Designation</option>
+                                <optgroup label="PHP">
+                                    <option value="1">Admin</option>
+                                    <option value="2">IT Manager</option>
+                                </optgroup>
+                                <optgroup label="Sales">
+                                    <option value="3">Sales Officer</option>
+                                </optgroup>
+                            </select>
+                            <span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;">
+                                <span class="selection">
+                                    <span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false"
+                                        tabindex="0" aria-labelledby="select2-designations_id-5i-container">
+                                        <span class="select2-selection__rendered" id="select2-designations_id-5i-container" title="Select Designation">Select Designation</span>
+                                        <span class="select2-selection__arrow" role="presentation">
+                                            <b role="presentation"></b>
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="dropdown-wrapper" aria-hidden="true"></span>
+                            </span>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox-inline c-checkbox">
+                                <label class="needsclick">
+                                    <input name="department_head_id" value="1" style="margin-right: 8px;" class="" data-parsley-multiple="department_head_id"
+                                        data-parsley-id="50" type="checkbox">
+                                    <span class="fa fa-check"></span>
+                                    Is he Department head? </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="border-none">
+                        <label for="field-1" class="col-sm-3 control-label">Permission
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <div class="checkbox c-radio needsclick">
+                                <label class="needsclick">
+                                    <input id="" checked="" name="permission" value="everyone" data-parsley-multiple="permission" data-parsley-id="53" type="radio">
+                                    <span class="fa fa-circle"></span>Everyone
+                                    <i title="" class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" data-original-title="who have permission for this menu and all admin user."></i>
+                                </label>
+                            </div>
+                            <div class="checkbox c-radio needsclick">
+                                <label class="needsclick">
+                                    <input id="" name="permission" value="custom_permission" data-parsley-multiple="permission" type="radio">
+                                    <span class="fa fa-circle"></span>Customize Permission
+                                    <i title="" class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" data-original-title="Select a individual permission . individually edit delete action"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group " id="permission_user_1" style="display: none;">
+                        <label for="field-1" class="col-sm-3 control-label">Select Users
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <div class="checkbox c-checkbox needsclick">
+                                <label class="needsclick">
+                                    <input value="1" name="assigned_to[]" class="needsclick" data-parsley-multiple="assigned_to" data-parsley-id="58" type="checkbox">
+                                    <span class="fa fa-check"></span>admin
+                                    <strong class="badge btn-danger">Admin</strong>
+                                </label>
+
+                            </div>
+                            <div class="action_1 p
+                                                                                        " id="action_11" style="display: none;">
+                                <label class="checkbox-inline c-checkbox">
+                                    <input id="1" checked="" name="action_11[]" disabled="" value="view" data-parsley-multiple="action_11" data-parsley-id="61"
+                                        type="checkbox">
+                                    <span class="fa fa-check"></span>Can View </label>
+                                <label class="checkbox-inline c-checkbox">
+                                    <input id="1" value="edit" name="action_1[]" data-parsley-multiple="action_1" data-parsley-id="64" type="checkbox">
+                                    <span class="fa fa-check"></span>Can Edit </label>
+                                <label class="checkbox-inline c-checkbox">
+                                    <input id="1" name="action_1[]" value="delete" data-parsley-multiple="action_1" type="checkbox">
+                                    <span class="fa fa-check"></span>Can Delete </label>
+                                <input id="1" name="action_1[]" value="view" type="hidden">
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3"></label>
+                        <div class="col-sm-5">
+                            <button type="submit" id="sbtn" class="btn btn-primary">Create User</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.change_user_status input[type="checkbox"]').change(function () {
+                var user_id = $(this).data().id;
+                var status = $(this).is(":checked");
+                if (status == true) {
+                    status = 1;
+                } else {
+                    status = 0;
+                }
+                $.ajax({
+                    type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                    url: 'http://hrms.coderitems.com/admin/user/change_status/' + status + '/' + user_id, // the url where we want to POST
+                    dataType: 'json', // what type of data do we expect back from the server
+                    encode: true,
+                    success: function (res) {
+                        console.log(res);
+                        if (res) {
+                            toastr[res.status](res.message);
+                        } else {
+                            alert('There was a problem with AJAX');
+                        }
+                    }
+                })
+
+            });
+
+        })
+        $(document).ready(function () {
+
+            $('#department').hide();
+            $('#client_permission').hide();
+            var user_flag = document.getElementById("user_type").value;
+            // on change user type select action
+            $('#user_type').on('change', function () {
+                if (this.value == '3' || this.value == '1') {
+                    $("#department").show();
+                    $(".department").removeAttr('disabled');
+                    $('#client_permission').hide();
+                    $(".client_permission").attr('disabled', 'disabled');
+                } else if (this.value == '2') {
+                    $('#client_permission').show();
+                    $(".client_permission").removeAttr('disabled');
+                    $("#department").hide();
+                    $(".department").attr('disabled', 'disabled');
+
+                } else {
+                    $('#client_permission').hide();
+                    $(".client_permission").attr('disabled', 'disabled');
+                    $("#department").hide();
+                    $(".department").attr('disabled', 'disabled');
+                }
+            });
+        });
+    </script>
+</div>

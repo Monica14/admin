@@ -6,7 +6,103 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
+        <script>
+            // function varTest() {
+            //     var x = 1;
+            //     if (true) {
+            //         var x = 2;  // same variable!
+            //         console.log(x);  // 2
+            //     }
+            //     console.log(x);  // 2
+            // }
+            // varTest();
+            // function varTest() {
+            //     var x = 1;
+            //     if (true) {
+            //         var x = 2;  // same variable!
+            //         console.log(x);  // 2
+            //     }
+            //     console.log(x);  // 2
+            // }
+            // varTest();
+            // // console.log(a)
+            // function letTest() {
+            //     let x = 1;
+            //     if (true) {
+            //         let x = 2;  // different variable
+            //         console.log(x);  // 2
+            //     }
+            //     console.log(x);  // 1
+            // }
+            //letTest();
+            /////////////////////////// By Ref ///////////////////////////////////
+            function changeref(varOne, varTwo) {
+                console.log("Inside Call by Value Method");
+                varOne.a = 100;
+                varTwo = 200;
+                console.log("varOne =" + varOne.a + "varTwo =" + varTwo);
+            }
+            let varOne = { a: 10 };
+            let varTwo = 20;
 
+            console.log("Before Call by Value Method");
+            console.log("varOne =" + varOne.a + "varTwo =" + varTwo);
+
+            changeref(varOne, varTwo)
+
+            console.log("After Call by Value Method");
+            console.log("varOne =" + varOne.a + "varTwo =" + varTwo);
+            /////////////////////////// By Value ///////////////////////////////////
+            function changevalue(varOne, varTwo) {
+                console.log("Inside Call by Value Method");
+                varOne = 100;
+                varTwo = 200;
+                console.log("varOne =" + varOne + "varTwo =" + varTwo);
+            }
+            varOne = 21;
+            //  let varOne = 21; /////////////////////// Identifier 'varOne' has already been declared
+            varTwo = 20;
+
+            console.log("Before Call by Value Method");
+            console.log("varOne =" + varOne + "varTwo =" + varTwo);
+
+            changevalue(varOne, varTwo)
+
+            console.log("After Call by Value Method");
+            console.log("varOne =" + varOne + "varTwo =" + varTwo);
+            ///////////////////////////////////////////////////////////////////
+            reassign = 21;
+            function chk()
+            {
+               var reassign = 2222;
+               //console.log(typeof(reassign))
+                return reassign;
+            }
+            chk();
+            console.log(reassign);
+            //console.log(typeof(reassign))
+            //////////////////////////////////////////////////////////////////
+            a = "aaa";
+            b = "bbb";
+            console.log("testing");
+            console.log("a"-"b");
+            //console.log(typeof(a));
+            for(var i=0;i<5;)
+            {
+                if(i<3)
+                {
+                    console.log(i);
+                    i++;
+                    continue;
+                }
+                else{
+                    console.log("//////////// Break Point /////////////");
+                    break;
+                }               
+                
+            }
+          // console.log(a)
+        </script>
         <form role="form">
             <div class="box-body">
                 <div class="box-header with-border">
@@ -46,7 +142,7 @@
                             }
                             console.log(i)
 
-
+                            ///// output : Uncaught TypeError: Assignment to constant variable. ///////////////////
                             /////////// while initialization of variable you have to assign the value to it else it throughs error /////////////////
                             /////////// const does not allows to change the variable value as well as cannot reinitialized it /////////////////
                     </pre>
@@ -82,6 +178,10 @@
         </form>
     </div>
     <!-- /.box -->
-
+    <div class="box-header with-border">
+        <h3 class="box-title">Try It</h3>
+    </div>
+    <iframe width="100%" height="300" src="//jsfiddle.net/monica14/fcL3umvv/embedded/" allowpaymentrequest allowfullscreen="allowfullscreen"
+        frameborder="0"></iframe>
 
 </div>

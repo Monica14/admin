@@ -15,6 +15,20 @@
                 <script>
 
                     ///////////////////////////// Public ///////////////////
+                    // Outputs: "Definition hoisted!"
+definitionHoisted();
+
+// TypeError: undefined is not a function
+definitionNotHoisted();
+/////////// Function Declaration is hoisted /////////////////
+function definitionHoisted() {
+    console.log("Definition hoisted!");
+}
+/////////// Function expression is not hoisted /////////////////
+var definitionNotHoisted = function () {
+    console.log("Definition not hoisted!");
+};
+
                     var person = function (name) {
                         var fullname = name;
                         return {

@@ -1,3 +1,4 @@
+
 var app = angular.module('pms', ["ngRoute", "datatables", "ngFileUpload", "ngStorage", "ui.router"]);
 app.run(function ($interval, $window) {
     $interval(function () {
@@ -169,12 +170,15 @@ app.config(function ($stateProvider) {
         .state("demo", {
             templateUrl: "demo.html"
         })
+        .state("typescript_concept", {
+            templateUrl: "typescript_concept.html"
+        })       
         .state("git_flow", {
             templateUrl: "git_flow.html"
         });
 });
 
-app.controller('serv', function ($scope, $http, $rootScope, Upload, addition) {
+app.controller('serv', function ($scope, $http, $rootScope, addition) {
     $scope.$on('getname', function (events, args) {
         console.log(events);
         console.log(args);
@@ -191,7 +195,44 @@ app.service('addition', function () {
         console.log(x);
     }
 });
+app.directive('contenteditable', function () {
+    return {
+        restrict: 'A', // only activate on element attribute
+        require: '?ngModel', // get a hold of NgModelController
+        link: function (scope, element, attrs, ngModel) {
+            if (!ngModel) return; // do nothing if no ng-model
+
+            // Specify how UI should be updated
+            ngModel.$render = function () {
+                element.html(ngModel.$viewValue || '');
+            };
+
+            // Listen for change events to enable binding
+            element.on('blur keyup change', function () {
+                scope.$apply(readViewText);
+            });
+
+            // No need to initialize, AngularJS will initialize the text based on ng-model attribute
+
+            // Write data to the model
+            function readViewText() {
+                var html = element.html();
+                // When we clear the content editable the browser leaves a <br> behind
+                // If strip-br attribute is provided then we strip this out
+                if (attrs.stripBr && html == '<br>') {
+                    html = '';
+                }
+                ngModel.$setViewValue(html);
+            }
+        }
+    };
+});
 app.controller('myfunc', function ($scope, $http, $rootScope, $localStorage, Upload, addition) {
+    $scope.get = function()
+    {
+        console.log($scope.Address)
+    }
+    
     $scope.get_val = function () {
         $rootScope.$broadcast('getname', $scope.emp_name);
     }
